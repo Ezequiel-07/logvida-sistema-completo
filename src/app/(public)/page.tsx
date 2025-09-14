@@ -9,7 +9,7 @@ import { Icons } from "@/components/icons";
 import { TypeAnimation } from "react-type-animation";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
 import { Tilt } from "react-tilt";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, Engine, IParticlesOptions, RecursivePartial } from "@tsparticles/engine";
@@ -78,9 +78,10 @@ export default function HomePage() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const carouselTimerRef = useRef<NodeJS.Timeout | null>(null);
   
-  const [startDriving, setStartDriving] = useState(false);
-  const [showVan, setShowVan] = useState(true);
+  const [hasHovered, setHasHovered] = useState(false);
+  const controls = useAnimationControls();
   const driveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
 
   const tiltOptions = {
     max: 25,
@@ -147,28 +148,27 @@ export default function HomePage() {
     startCarouselTimer();
   }, [startCarouselTimer]);
   
+  const handleVanHoverStart = () => {
+    setHasHovered(true);
+    if (driveTimeoutRef.current) {
+      clearTimeout(driveTimeoutRef.current);
+    }
+  };
+
   const handleVanHoverEnd = () => {
     if (driveTimeoutRef.current) {
       clearTimeout(driveTimeoutRef.current);
     }
-    // Set a timeout to trigger the driving animation after the user stops hovering
-    driveTimeoutRef.current = setTimeout(() => {
-      setStartDriving(true);
-    }, 1500); // 1.5 second delay after hover ends
+    driveTimeoutRef.current = setTimeout(async () => {
+      if (hasHovered) {
+        await controls.start("drive");
+        await controls.start("hidden"); // Move to hidden state
+        controls.set("initial"); // Reset instantly
+      }
+    }, 2000); // 2 seconds delay after hover ends
   };
 
-  const handleAnimationComplete = () => {
-    // When the "drive" animation completes, hide the van
-    if (startDriving) {
-      setShowVan(false);
-      // After a delay, show it again and reset the driving state for the next cycle
-      setTimeout(() => {
-        setStartDriving(false);
-        setShowVan(true);
-      }, 1000); // 1-second delay before reappearing
-    }
-  };
-  
+
   const carouselVariants = {
     enter: {
       x: '100%',
@@ -199,7 +199,16 @@ export default function HomePage() {
 
   const vanDriveAwayVariants = {
     initial: { scale: 1, y: 0, opacity: 1 },
-    drive: { scale: 0, y: -100, opacity: 0 },
+    drive: {
+      scale: 0.1,
+      y: -150,
+      opacity: 0,
+      transition: { duration: 1.5, ease: "easeIn" }
+    },
+    hidden: {
+      opacity: 0,
+      transition: { duration: 0.1 }
+    }
   };
 
 
@@ -266,85 +275,84 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 flex justify-center items-center p-4">
-               {showVan && (
-                  <motion.div
-                      className="relative w-full max-w-sm flex justify-center items-center group"
-                      style={{ perspective: "1000px" }}
-                      onHoverEnd={handleVanHoverEnd}
-                      variants={vanDriveAwayVariants}
-                      animate={startDriving ? "drive" : "initial"}
-                      transition={{ duration: 1.5, ease: "easeIn" }}
-                      onAnimationComplete={handleAnimationComplete}
-                    >
-                    <svg
-                      viewBox="0 0 500 400"
-                      className="w-full h-auto drop-shadow-2xl"
-                      xmlns="http://www.w3.org/2000/svg"
-                      data-ai-hint="utility van back"
-                    >
-                      <defs>
-                          <clipPath id="cargo-clip">
-                          <rect x="110" y="70" width="280" height="260" rx="12" />
-                          </clipPath>
-                      </defs>
-                      
-                      <g id="body">
-                        <path d="M 80 340 Q 60 340 60 320 L 60 120 Q 60 80 100 70 L 400 70 Q 440 80 440 120 L 440 320 Q 440 340 420 340 Z" fill="#FFFFFF" />
-                        <path d="M 60 120 L 60 100 L 440 100 L 440 120 Q 440 80 400 70 L 100 70 Q 60 80 60 120 Z" fill="#e5e7eb" />
-                        <rect x="50" y="340" width="400" height="30" rx="6" fill="#374151" />
-                      </g>
-                      
-                      <g id="tires">
-                        <rect x="90" y="360" width="80" height="25" rx="8" fill="#2d3748" />
-                        <rect x="330" y="360" width="80" height="25" rx="8" fill="#2d3748" />
-                      </g>
-                      
-                      <g id="lights">
-                          <path d="M 80 110 L 80 290 Q 75 295 70 290 L 70 110 Q 75 105 80 110 Z" fill="#DC2626" />
-                          <path d="M 420 110 L 420 290 Q 425 295 430 290 L 430 110 Q 425 105 420 110 Z" fill="#DC2626" />
-                          <path d="M 80 250 L 80 290 Q 75 295 70 290 L 70 250 Z" fill="#FFFFFF40" />
-                          <path d="M 420 250 L 420 290 Q 425 295 430 290 L 430 250 Z" fill="#FFFFFF40" />
-                          <rect x="180" y="55" width="140" height="10" rx="4" fill="#DC2626"/>
-                      </g>
+             <div className="w-full md:w-1/2 flex justify-center items-center p-4">
+                <motion.div
+                  className="relative w-full max-w-sm flex justify-center items-center group"
+                  onHoverStart={handleVanHoverStart}
+                  onHoverEnd={handleVanHoverEnd}
+                  variants={vanDriveAwayVariants}
+                  animate={controls}
+                  initial="initial"
+                >
+                  <svg
+                    viewBox="0 0 500 400"
+                    className="w-full h-auto drop-shadow-2xl"
+                    xmlns="http://www.w3.org/2000/svg"
+                    data-ai-hint="renault kangoo back"
+                  >
+                    <defs>
+                      <clipPath id="cargo-clip">
+                        <path d="M 120 100 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
+                      </clipPath>
+                    </defs>
 
-                      <rect x="180" y="315" width="140" height="10" rx="4" fill="#a0aec0" />
+                    {/* Tires */}
+                    <rect x="70" y="340" width="80" height="25" rx="8" fill="#2d3748" />
+                    <rect x="350" y="340" width="80" height="25" rx="8" fill="#2d3748" />
 
-                      <g id="handle-area">
-                        <rect x="180" y="195" width="60" height="8" rx="4" fill="#2d3748" />
-                        <rect x="260" y="195" width="60" height="8" rx="4" fill="#2d3748" />
-                      </g>
+                    {/* Main Body */}
+                    <g id="body">
+                      <path d="M 80 345 Q 60 345 60 325 L 60 110 Q 60 90 80 85 L 100 80 L 400 80 L 420 85 Q 440 90 440 110 L 440 325 Q 440 345 420 345 Z" fill="#FFFFFF" />
+                      <rect x="50" y="340" width="400" height="30" rx="6" fill="#1f2937" />
+                    </g>
 
-                      <image
-                          href="/caixascarro.png"
-                          x="110" y="70" width="280" height="245"
-                          preserveAspectRatio="xMidYMid slice"
-                          clipPath="url(#cargo-clip)"
-                          className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
-                      />
+                    {/* Tail Lights */}
+                    <g id="lights">
+                        {/* Left Light */}
+                        <path d="M 80 100 L 80 280 C 80 295 95 305 105 295 L 105 110 C 95 95 80 85 80 100 Z" fill="#DC2626"/>
+                        <path d="M 82 230 L 82 270 C 82 280 92 285 98 278 L 98 238 C 92 225 82 220 82 230 Z" fill="#FFFFFF" opacity="0.6"/>
+                        {/* Right Light */}
+                        <path d="M 420 100 L 420 280 C 420 295 405 305 395 295 L 395 110 C 405 95 420 85 420 100 Z" fill="#DC2626"/>
+                        <path d="M 418 230 L 418 270 C 418 280 408 285 402 278 L 402 238 C 408 225 418 220 418 230 Z" fill="#FFFFFF" opacity="0.6"/>
+                        {/* Top Brake Light */}
+                        <rect x="180" y="65" width="140" height="12" rx="4" fill="#DC2626" />
+                    </g>
+                    
+                    {/* Handle Bar */}
+                    <rect x="150" y="200" width="200" height="15" rx="5" fill="#1f2937"/>
+                    
+                    {/* Finer handles on the bar */}
+                    <rect x="160" y="202" width="30" height="11" rx="3" fill="#374151" className="group-hover:opacity-0 transition-opacity"/>
+                    <rect x="310" y="202" width="30" height="11" rx="3" fill="#374151" className="group-hover:opacity-0 transition-opacity"/>
+                    
 
-                      <g className="origin-center" style={{ transformOrigin: "center" }}>
-                          <rect
-                              x="100" y="70" width="150" height="270" rx="8"
-                              className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                              fill="#FFFFFF"
-                          />
-                          <rect
-                              x="250" y="70" width="150" height="270" rx="8"
-                              className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                              fill="#FFFFFF"
-                          />
-                      </g>
+                    <image
+                        href="/caixascarro.png"
+                        x="120" y="90" width="260" height="250"
+                        preserveAspectRatio="xMidYMid slice"
+                        clipPath="url(#cargo-clip)"
+                        className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
+                    />
 
-                      <line x1="250" y1="70" x2="250" y2="340" stroke="#f3f4f6" strokeWidth="2" />
-                      
-                      <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                           <image href="/logvida-logo.png" x="120" y="150" height="120" width="120" />
-                      </g>
-                    </svg>
-                  </motion.div>
-                )}
-            </div>
+                    {/* Doors */}
+                    <g className="origin-center" style={{ transformOrigin: "center" }}>
+                        {/* Left Door */}
+                        <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
+                            <rect x="100" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
+                            <image href="/logvida-logo.png" x="115" y="140" height="50" width="120" className="transition-opacity duration-300 group-hover:opacity-0" />
+                        </g>
+                        {/* Right Door */}
+                        <rect
+                            x="250" y="80" width="150" height="260" rx="8"
+                            className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
+                            fill="#FFFFFF"
+                        />
+                    </g>
+
+                    <line x1="250" y1="80" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="2" />
+                  </svg>
+                </motion.div>
+             </div>
           </section>
 
           {/* Features Section */}
@@ -568,3 +576,4 @@ export default function HomePage() {
     </div>
   );
 }
+
