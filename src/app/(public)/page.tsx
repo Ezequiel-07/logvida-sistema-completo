@@ -285,21 +285,11 @@ export default function HomePage() {
                   animate={controls}
                   initial="initial"
                 >
-                    <div className="absolute inset-x-0 bottom-0 h-2/5 z-0">
-                      <Image 
-                        src="/estrada.png" 
-                        alt="Estrada de asfalto"
-                        width={600}
-                        height={200}
-                        className="object-cover w-full h-full"
-                        data-ai-hint="asphalt road"
-                      />
-                    </div>
                     <div className="relative z-10">
                       <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                           <defs>
                           <clipPath id="cargo-clip">
-                              <path d="M 120 100 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
+                              <path d="M 120 90 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
                           </clipPath>
                           </defs>
                           <g transform="scale(1.0)">
