@@ -298,28 +298,52 @@ export default function HomePage() {
                     >
                         <div className="relative z-10">
                             <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
+                                {/* Grupo principal para escalar o desenho da van */}
                                 <g transform="scale(0.8)">
-                                    <image href="/kamgoo.png" x="125" y="90" height="250" width="250" />
+                                    
+                                    {/* --- IMAGEM DE FUNDO --- */}
+                                    {/* Esta imagem aparece quando as portas se abrem */}
+                                    <image href="/caixascarro.png" x="125" y="90" height="250" width="250" />
+                                    
+                                    {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
+                                    {/* Corpo principal branco da van */}
                                     <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
+                                    {/* Para-choque traseiro */}
                                     <rect x="86" y="345" width="330" height="30" rx="6" fill="#1f2937" />
+                                    {/* Rodas */}
                                     <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
                                     <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
+
+                                    {/* --- LUZES E DETALHES --- */}
                                     <g>
+                                        {/* Luz de freio esquerda */}
                                         <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 95 C 125 105 110 95 110 110 Z" fill="#DC2626" />
+                                        {/* Detalhe branco na luz de freio esquerda (ré) */}
                                         <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6" />
+                                        {/* Luz de freio direita */}
                                         <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 95 C 375 105 390 95 390 110 Z" fill="#DC2626" />
+                                        {/* Detalhe branco na luz de freio direita (ré) */}
                                         <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6" />
+                                        {/* Luz de freio superior (no teto) */}
                                         <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
                                     </g>
+
+                                    {/* --- PORTAS TRASEIRAS --- */}
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
+                                        {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
                                         </g>
+                                        {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
                                         </g>
                                     </g>
+                                    
+                                    {/* --- DETALHES FINAIS --- */}
+                                    {/* Linha de separação entre as portas */}
                                     <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
+                                    {/* Maçaneta da porta */}
                                     <g>
                                       <rect x="140" y="208" width="100" height="8" rx="3" fill="#1F2937" />
                                     </g>
