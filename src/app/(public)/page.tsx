@@ -247,7 +247,7 @@ export default function HomePage() {
                   data-ai-hint="utility van back"
                 >
                   {/* Fundo interno e imagem do conteúdo */}
-                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="4"/>
+                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#e5e7eb" stroke="#FFFFFF" strokeWidth="4"/>
                   <clipPath id="cargo-clip">
                     <rect x="110" y="70" width="280" height="260" rx="12" />
                   </clipPath>
@@ -259,20 +259,20 @@ export default function HomePage() {
                   />
                   
                   {/* Lanternas (simulando Kangoo) */}
-                  <rect x="70" y="60" width="20" height="280" rx="6" fill="#dc2626"/>
-                  <rect x="410" y="60" width="20" height="280" rx="6" fill="#dc2626"/>
+                  <rect x="70" y="130" width="20" height="140" rx="6" fill="#dc2626"/>
+                  <rect x="410" y="130" width="20" height="140" rx="6" fill="#dc2626"/>
                   
                   {/* Portas Brancas */}
                   <g className="origin-center" style={{ transformOrigin: "center" }}>
                     <rect
                       x="100" y="60" width="150" height="280" rx="8"
                       className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                      fill="#FFFFFF" stroke="#9ca3af" strokeWidth="3"
+                      fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="3"
                     />
                     <rect
                       x="250" y="60" width="150" height="280" rx="8"
                       className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                      fill="#FFFFFF" stroke="#9ca3af" strokeWidth="3"
+                      fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="3"
                     />
                   </g>
                   
