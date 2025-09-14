@@ -281,7 +281,7 @@ export default function HomePage() {
                     src="/estrada.png"
                     alt="Estrada de asfalto"
                     fill
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     data-ai-hint="road asphalt"
                 />
                 <Tilt options={tiltOptions} className="relative z-10">
@@ -310,7 +310,7 @@ export default function HomePage() {
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
-                                            <image href="/logofiorino.png" x="125" y="90" height="250" width="120" className="rounded-md" />
+                                            <image href="/kamgoo.png" x="125" y="90" height="250" width="120" className="rounded-md" />
                                         </g>
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
@@ -548,5 +548,7 @@ export default function HomePage() {
       </div>
     </div>
   );
+
+    
 
     
