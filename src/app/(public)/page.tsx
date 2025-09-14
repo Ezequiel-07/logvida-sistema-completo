@@ -247,7 +247,12 @@ export default function HomePage() {
                   data-ai-hint="utility van back"
                 >
                   {/* Fundo interno e imagem do conteúdo */}
-                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#e5e7eb" stroke="#FFFFFF" strokeWidth="4"/>
+                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="4"/>
+                  
+                  {/* Pneus */}
+                  <rect x="90" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
+                  <rect x="350" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
+
                   <clipPath id="cargo-clip">
                     <rect x="110" y="70" width="280" height="260" rx="12" />
                   </clipPath>
@@ -258,9 +263,9 @@ export default function HomePage() {
                     clipPath="url(#cargo-clip)"
                   />
                   
-                  {/* Lanternas (simulando Kangoo) */}
-                  <rect x="70" y="130" width="20" height="140" rx="6" fill="#dc2626"/>
-                  <rect x="410" y="130" width="20" height="140" rx="6" fill="#dc2626"/>
+                  {/* Lanternas (agora brancas e menores) */}
+                  <rect x="70" y="165" width="20" height="70" rx="6" fill="#FFFFFF"/>
+                  <rect x="410" y="165" width="20" height="70" rx="6" fill="#FFFFFF"/>
                   
                   {/* Portas Brancas */}
                   <g className="origin-center" style={{ transformOrigin: "center" }}>
@@ -277,7 +282,16 @@ export default function HomePage() {
                   </g>
                   
                   {/* Linha divisória das portas */}
-                  <line x1="250" y1="60" x2="250" y2="340" stroke="#9ca3af" strokeWidth="3" strokeDasharray="0" />
+                  <line x1="250" y1="60" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" strokeDasharray="0" />
+
+                  {/* Logo e Nome - visível apenas quando as portas estão fechadas */}
+                   <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
+                      <path d="M235 180 a 20 20 0 1 0 40 0 a 20 20 0 1 0 -40 0 M220 220 L220 160 L240 160" stroke="#2E8B57" strokeWidth="8" fill="none" />
+                      <text x="250" y="245" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" textAnchor="middle">
+                        <tspan fill="#2E8B57">log</tspan><tspan fill="#4285F4">vida</tspan>
+                      </text>
+                   </g>
+
                 </svg>
               </div>
             </div>
