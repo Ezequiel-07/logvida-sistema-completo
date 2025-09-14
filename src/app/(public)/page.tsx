@@ -277,13 +277,16 @@ export default function HomePage() {
               </div>
             </div>
              <div className="relative w-full md:w-1/2 flex justify-center items-center p-4">
-                <Image
-                    src="/estrada.png"
-                    alt="Estrada de asfalto"
-                    fill
-                    className="w-full h-full object-contain"
-                    data-ai-hint="road asphalt"
-                />
+                <div className="absolute inset-0">
+                    <Image
+                        src="/estrada.png"
+                        alt="Estrada de asfalto"
+                        fill
+                        className="w-full h-full object-cover"
+                        data-ai-hint="road asphalt"
+                        priority
+                    />
+                </div>
                 <Tilt options={tiltOptions} className="relative z-10">
                     <motion.div
                     className="relative w-full max-w-sm flex justify-center items-center group"
@@ -296,6 +299,7 @@ export default function HomePage() {
                         <div className="relative z-10">
                             <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                                 <g transform="scale(0.8)">
+                                    <image href="/kamgoo.png" x="125" y="90" height="250" width="250" />
                                     <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
                                     <rect x="86" y="345" width="330" height="30" rx="6" fill="#1f2937" />
                                     <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
@@ -310,7 +314,6 @@ export default function HomePage() {
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
-                                            <image href="/kamgoo.png" x="125" y="90" height="250" width="120" className="rounded-md" />
                                         </g>
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
@@ -548,6 +551,8 @@ export default function HomePage() {
       </div>
     </div>
   );
+
+    
 
     
 
