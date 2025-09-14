@@ -285,6 +285,13 @@ export default function HomePage() {
                   animate={controls}
                   initial="initial"
                 >
+                    <Image
+                      src="/kamgoo.png"
+                      alt="Estrada"
+                      fill
+                      className="object-cover absolute inset-0 z-0"
+                      data-ai-hint="road street"
+                    />
                     <div className="relative z-10">
                       <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                           <defs>
@@ -292,10 +299,11 @@ export default function HomePage() {
                               <path d="M 120 90 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
                           </clipPath>
                           </defs>
-                          <g transform="scale(1.0)">
+                          {/* Ajuste o 'g' principal para controlar o tamanho total da van */}
+                          <g transform="scale(0.8)">
                               {/* <!-- Pneus --> */}
-                              <rect x="70" y="360" width="60" height="30" rx="8" fill="#2d3748" />
-                              <rect x="370" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                              <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
+                              <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
                               
                               {/* <!-- Carroceria Principal (contorno e base) --> */}
                               <path d="M 110 375 Q 90 375 90 355 L 90 60 Q 90 40 110 35 L 130 30 L 370 30 L 390 35 Q 410 40 410 60 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
@@ -316,7 +324,7 @@ export default function HomePage() {
                               </g>
                               
                               {/* <!-- Imagem de Carga --> */}
-                              <image href="/caixascarro.png" x="120" y="90" width="260" height="250" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
+                              <image href="/caixascarro.png" x="140" y="110" width="200" height="200" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
                               
                               {/* <!-- Portas --> */}
                               <g className="origin-center" style={ { transformOrigin: "center" } }>
@@ -333,7 +341,7 @@ export default function HomePage() {
                               {/* <!-- Linha central da porta --> */}
                               <line x1="250" y1="100" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" />
                               
-                              {/* <!-- Maçaneta --> */}
+                              {/* <!-- Maçaneta - movida para ser desenhada por último --> */}
                               <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
                                   <rect x="140" y="208" width="100" height="8" rx="3" fill="#1F2937" />
                               </g>
