@@ -288,56 +288,54 @@ export default function HomePage() {
                     <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                         <defs>
                         <clipPath id="cargo-clip">
-                            <path d="M 120 100 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
+                            {/* Ajustado para a nova altura */}
+                            <path d="M 130 50 Q 130 40 140 40 L 360 40 Q 370 40 370 50 L 370 340 Q 370 350 360 350 L 140 350 Q 130 350 130 340 Z" />
                         </clipPath>
                         </defs>
                         
-                        <g transform="scale(1.0)">
+                        <g>
                             {/* <!-- Pneus --> */}
-                            <rect x="130" y="360" width="60" height="30" rx="8" fill="#2d3748" />
-                            <rect x="310" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                            <rect x="80" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                            <rect x="350" y="360" width="60" height="30" rx="8" fill="#2d3748" />
                             
                             {/* <!-- Carroceria Principal (contorno e base) --> */}
-                            <path d="M 140 345 Q 120 345 120 325 L 120 120 Q 120 100 140 95 L 160 90 L 340 90 L 360 95 Q 380 100 380 120 L 380 325 Q 380 345 360 345 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
+                            <path d="M 110 375 Q 90 375 90 355 L 90 60 Q 90 40 110 35 L 130 30 L 370 30 L 390 35 Q 410 40 410 60 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
                             
                             {/* <!-- Para-choque inferior --> */}
-                            <rect x="110" y="340" width="280" height="30" rx="6" fill="#1f2937" />
+                            <rect x="80" y="360" width="330" height="30" rx="6" fill="#1f2937" />
                             
                             {/* <!-- Lanternas Traseiras --> */}
                             <g>
-                                <path d="M 140 130 L 140 300 C 140 315 155 325 165 315 L 165 140 C 155 125 140 115 140 130 Z" fill="#DC2626"/>
-                                <path d="M 142 250 L 142 290 C 142 300 152 305 158 298 L 158 258 C 152 245 142 240 142 250 Z" fill="#FFFFFF" opacity="0.6"/>
+                                <path d="M 110 70 L 110 330 C 110 345 125 355 135 345 L 135 80 C 125 65 110 55 110 70 Z" fill="#DC2626"/>
+                                <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6"/>
                                 
-                                <path d="M 360 130 L 360 300 C 360 315 345 325 335 315 L 335 140 C 345 125 360 115 360 130 Z" fill="#DC2626"/>
-                                <path d="M 358 250 L 358 290 C 358 300 348 305 342 298 L 342 258 C 348 245 358 240 358 250 Z" fill="#FFFFFF" opacity="0.6"/>
+                                <path d="M 390 70 L 390 330 C 390 345 375 355 365 345 L 365 80 C 375 65 390 55 390 70 Z" fill="#DC2626"/>
+                                <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6"/>
                                 
-                                {/* <!-- Luz de freio superior --> */}
-                                <rect x="220" y="92" width="60" height="8" rx="4" fill="#DC2626" />
+                                <rect x="190" y="32" width="110" height="10" rx="4" fill="#DC2626" />
                             </g>
                             
-                            {/* <!-- Imagem de Carga (fica no fundo) --> */}
-                            <image href="/caixascarro.png" x="140" y="50" width="170" height="340" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
-
+                            {/* <!-- Imagem de Carga --> */}
+                            <image href="/caixascarro.png" x="130" y="40" width="240" height="310" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
+                            
                             {/* <!-- Portas e Logo --> */}
-                            <g className="origin-center" style={{ transformOrigin: "center" }}>
-                                {/* <!-- Porta Esquerda --> */}
+                            <g className="origin-center" style={ { transformOrigin: "center" } }>
                                 <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
-                                    <rect x="140" y="45" width="105" height="300" rx="8" fill="#FFFFFF" />
-                                    <image href="/logvida-logo.png" x="155" y="180" height="60" width="80" className="transition-opacity duration-300 group-hover:opacity-0" />
+                                    <rect x="130" y="50" width="115" height="340" rx="8" fill="#FFFFFF" />
+                                    <image href="/logvida-logo.png" x="150" y="180" height="60" width="80" className="transition-opacity duration-300 group-hover:opacity-0" />
                                 </g>
-                                {/* <!-- Porta Direita --> */}
                                 <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
-                                    <rect x="245" y="45" width="105" height="300" rx="8" fill="#FFFFFF" />
+                                    <rect x="245" y="50" width="115" height="340" rx="8" fill="#FFFFFF" />
                                 </g>
                             </g>
-
-                            {/* <!-- Maçaneta (Renderizada por cima das portas) --> */}
-                            <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                                <rect x="150" y="248" width="80" height="8" rx="3" fill="#1F2937" />
-                            </g>
-                            
+                    
                             {/* <!-- Linha central da porta --> */}
-                            <line x1="245" y1="45" x2="245" y2="345" stroke="#e5e7eb" strokeWidth="2" />
+                            <line x1="245" y1="40" x2="245" y2="390" stroke="#e5e7eb" strokeWidth="3" />
+                            
+                            {/* <!-- Maçaneta --> */}
+                            <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
+                                <rect x="140" y="208" width="100" height="8" rx="3" fill="#1F2937" />
+                            </g>
                         </g>
                     </svg>
                 </motion.div>
