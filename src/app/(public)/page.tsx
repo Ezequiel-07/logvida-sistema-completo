@@ -240,19 +240,19 @@ export default function HomePage() {
                 className="relative w-full max-w-sm flex justify-center items-center group"
                 style={{ perspective: "1000px" }}
               >
-                <svg
+                 <svg
                   viewBox="0 0 500 400"
                   className="w-full h-auto drop-shadow-2xl"
                   xmlns="http://www.w3.org/2000/svg"
                   data-ai-hint="utility van back"
                 >
-                  {/* Fundo interno e imagem do conteúdo */}
-                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="4"/>
-                  
                   {/* Pneus */}
                   <rect x="90" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
                   <rect x="350" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
 
+                  {/* Corpo do Veículo */}
+                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="4"/>
+                  
                   <clipPath id="cargo-clip">
                     <rect x="110" y="70" width="280" height="260" rx="12" />
                   </clipPath>
@@ -263,35 +263,30 @@ export default function HomePage() {
                     clipPath="url(#cargo-clip)"
                   />
                   
-                  {/* Lanternas (agora brancas e menores) */}
-                  <rect x="70" y="165" width="20" height="70" rx="6" fill="#FFFFFF"/>
-                  <rect x="410" y="165" width="20" height="70" rx="6" fill="#FFFFFF"/>
+                  {/* Lanternas Vermelhas */}
+                  <rect x="70" y="180" width="20" height="40" rx="6" fill="#EF4444"/>
+                  <rect x="410" y="180" width="20" height="40" rx="6" fill="#EF4444"/>
                   
                   {/* Portas Brancas */}
                   <g className="origin-center" style={{ transformOrigin: "center" }}>
                     <rect
                       x="100" y="60" width="150" height="280" rx="8"
                       className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                      fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="3"
+                      fill="#FFFFFF" stroke="#e5e7eb" strokeWidth="2"
                     />
                     <rect
                       x="250" y="60" width="150" height="280" rx="8"
                       className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                      fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="3"
+                      fill="#FFFFFF" stroke="#e5e7eb" strokeWidth="2"
                     />
                   </g>
                   
-                  {/* Linha divisória das portas */}
                   <line x1="250" y1="60" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" strokeDasharray="0" />
 
                   {/* Logo e Nome - visível apenas quando as portas estão fechadas */}
                    <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                      <path d="M235 180 a 20 20 0 1 0 40 0 a 20 20 0 1 0 -40 0 M220 220 L220 160 L240 160" stroke="#2E8B57" strokeWidth="8" fill="none" />
-                      <text x="250" y="245" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" textAnchor="middle">
-                        <tspan fill="#2E8B57">log</tspan><tspan fill="#4285F4">vida</tspan>
-                      </text>
+                      <image href="/logvida-logo.png" x="225" y="160" height="50" width="50" />
                    </g>
-
                 </svg>
               </div>
             </div>
