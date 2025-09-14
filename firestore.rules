@@ -1,0 +1,90 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions to check user roles
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isDriver() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'driver';
+    }
+    
+    function isClient() {
+      return isAuth() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'client';
+    }
+
+    // Rule for a single order: Public read, authenticated write, admin delete
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create, update: if isAuth();
+      allow delete: if isAdmin();
+    }
+    
+    // Rule for the users collection
+    match /users/{userId} {
+      allow list, get: if isAuth();
+      allow update: if request.auth.uid == userId || isAdmin();
+      allow create, delete: if isAdmin();
+    }
+    
+    // Rule for clients collection: Only admins can manage
+    match /clients/{clientId} {
+        allow get, list, create, update, delete: if isAdmin();
+    }
+    
+    // Rule for vehicles collection: Admins manage, authenticated can read
+    match /vehicles/{vehicleId} {
+        allow get, list: if isAuth();
+        allow create, update, delete: if isAdmin();
+    }
+    
+    // Rule for vehicle maintenance records
+    match /vehicleMaintenance/{maintId} {
+        allow get, list, create, update, delete: if isAdmin();
+    }
+    
+    // Rule for quotes: Public can create, admins can manage
+    match /quotes/{quoteId} {
+        allow create: if true;
+        allow get, list, update, delete: if isAdmin();
+    }
+    
+    // Rule for company settings: Only admins can read/write
+    match /companySettings/{settingId} {
+        allow get, list, create, update, delete: if isAdmin();
+    }
+    
+    // Rule for driver locations: Drivers can update their own, admins can read all
+    match /driverLocations/{driverId} {
+      allow get: if isAuth();
+      allow create, update: if request.auth.uid == driverId;
+    }
+    
+    // Rule for chat collections
+    match /chats/{chatId} {
+        allow get, list: if isAuth() && request.auth.uid in resource.data.participantIds;
+        allow create, update: if isAuth();
+        
+        match /messages/{messageId} {
+            allow read, create: if isAuth() && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participantIds;
+        }
+    }
+    
+    // Rule for radars: Drivers and Admins can create, only Admins delete/update
+    match /radars/{radarId} {
+        allow get, list: if isAuth();
+        allow create: if isDriver() || isAdmin();
+        allow update, delete: if isAdmin();
+    }
+    
+     // All other paths are closed by default
+  }
+}

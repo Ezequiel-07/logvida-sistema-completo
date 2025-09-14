@@ -1,0 +1,23 @@
+{
+  "name": "LogVida - Gerenciamento Logístico",
+  "short_name": "LogVida",
+  "description": "LogVida - Sistema de Gerenciamento Logístico para o setor da saúde.",
+  "icons": [
+    {
+      "src": "/logvida-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logvida-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ECEFF1",
+  "theme_color": "#2E8B57"
+}

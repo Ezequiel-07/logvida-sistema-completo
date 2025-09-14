@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.logvida.app"
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.logvida.app"
+        minSdkVersion 22
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    flatDir{
+        dirs 'libs'
+    }
+    // Required for capacitor-background-geolocation
+    maven {
+        url "https://repo.transistorsoft.com/maven/"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation project(':capacitor-android')
+    implementation 'androidx.work:work-runtime:2.9.0'
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+}
+
+apply from: 'capacitor.build.gradle'

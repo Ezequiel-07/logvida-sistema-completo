@@ -1,0 +1,176 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 14px; /* Reduced from 16px for a more compact view */
+}
+@media (max-width: 639px) {
+  /* Tailwind's 'sm' breakpoint is 640px, so < 640px */
+  html {
+    font-size: 13px; /* Further reduced for mobile screens */
+  }
+}
+
+:root {
+  --background: 200 16% 93%; /* #ECEFF1 Light Gray */
+  --foreground: 200 13% 28%; /* #37474F Darker Gray */
+  --card: 0 0% 100%; /* White */
+  --card-foreground: 200 13% 28%; /* Darker Gray */
+  --popover: 0 0% 100%; /* White */
+  --popover-foreground: 200 13% 28%; /* Darker Gray */
+
+  /* Updated Primary Colors to Green Theme */
+  --primary: 150 55% 40%; /* #2E8B57 - VidaLog Green */
+  --primary-foreground: 0 0% 100%; /* White for contrast on green */
+
+  /* Adjusted Secondary Colors to complement Green */
+  --secondary: 150 30% 96%; /* Very Light Green/Gray */
+  --secondary-foreground: 150 55% 30%; /* Darker Green for text on light green secondary */
+
+  /* Adjusted Muted Colors to complement Green */
+  --muted: 150 20% 95%; /* Lighter, slightly desaturated green-gray */
+  --muted-foreground: 150 15% 60%; /* Muted green-gray text */
+
+  --accent: 45 100% 51%; /* #FFC107 Amber - Kept for accents */
+  --accent-foreground: 0 0% 0%; /* Black for contrast on Amber */
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 200 16% 86%; /* #CFD8DC */
+  --input: 200 16% 86%;
+  --ring: 150 55% 40%; /* VidaLog Green for focus rings */
+
+  --chart-1: hsl(var(--primary));
+  --chart-2: hsl(var(--accent));
+  --chart-3: 200 13% 40%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --radius: 0.5rem;
+
+  /* Semantic colors for accounting */
+  --variable-costs: 31 94% 43%; /* Amber/Orange for variable costs */
+  --fixed-costs: 221 83% 53%; /* Blue for fixed costs */
+  --profit: 142 76% 36%; /* Green for profit */
+
+  /* Sidebar specific colors - Light theme with green text/icons */
+  --sidebar-background: 220 20% 98%; /* Very light, slightly cool off-white */
+  --sidebar-foreground: 150 45% 32%; /* Professional, medium-dark desaturated green for text */
+  --sidebar-border: 220 15% 90%; /* Slightly darker than background for subtle separation */
+
+  --sidebar-primary: 150 35% 88%; /* Active BG: A light, muted green */
+  --sidebar-primary-foreground: 150 50% 25%; /* Active Text: Darker green for emphasis */
+
+  --sidebar-accent: 220 20% 94%; /* Hover BG: A slightly darker off-white */
+  --sidebar-accent-foreground: 150 45% 32%; /* Hover Text: Main green text color */
+
+  --sidebar-ring: var(--accent); /* Amber for focus ring */
+  --logo-icon-color-on-sidebar: 150 55% 40%; /* Logo Icon: A more vibrant, distinct green */
+}
+
+.dark {
+  --background: 200 13% 18%; /* Darker Gray for dark mode background */
+  --foreground: 200 16% 93%; /* Light Gray for dark mode text */
+  --card: 200 13% 22%;
+  --card-foreground: 200 16% 93%;
+  --popover: 200 13% 22%;
+  --popover-foreground: 200 16% 93%;
+
+  /* Updated Primary Colors to Green Theme for Dark Mode */
+  --primary: 150 50% 55%; /* Lighter VidaLog Green */
+  --primary-foreground: 150 50% 15%; /* Very Dark Green for contrast on lighter green buttons */
+
+  /* Adjusted Secondary Colors for Dark Mode */
+  --secondary: 150 20% 30%; /* Dark Desaturated Green */
+  --secondary-foreground: 150 30% 85%; /* Lighter Green for text on dark green secondary */
+
+  /* Adjusted Muted Colors for Dark Mode */
+  --muted: 150 15% 25%; /* Darker, slightly desaturated green-gray */
+  --muted-foreground: 150 20% 70%; /* Lighter muted green-gray text */
+
+  --accent: 45 100% 61%; /* Lighter Amber for dark mode */
+  --accent-foreground: 0 0% 0%;
+
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 200 13% 30%;
+  --input: 200 13% 30%;
+  --ring: 150 50% 55%; /* Lighter VidaLog Green for focus rings */
+
+  --chart-1: hsl(var(--primary));
+  --chart-2: hsl(var(--accent));
+  --chart-3: 200 16% 80%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 340 75% 55%;
+
+  /* Semantic colors for accounting */
+  --variable-costs: 38 92% 50%; /* Amber for variable costs */
+  --fixed-costs: 217 91% 60%; /* Lighter Blue for fixed costs */
+  --profit: 145 63% 49%; /* Green for profit */
+
+  /* Sidebar specific colors for dark mode - Light text on very dark background */
+  --sidebar-background: 220 10% 12%; /* Very dark, slightly cool off-black */
+  --sidebar-foreground: 150 30% 75%; /* Text: A lighter, muted green */
+  --sidebar-border: 220 10% 18%; /* Slightly lighter than background for borders */
+
+  --sidebar-primary: 150 35% 22%; /* Active BG: A dark, muted green */
+  --sidebar-primary-foreground: 150 40% 85%; /* Active Text: Brighter green for emphasis */
+
+  --sidebar-accent: 220 10% 16%; /* Hover BG: A slightly lighter off-black */
+  --sidebar-accent-foreground: 150 30% 75%; /* Hover Text: Main light green text color */
+
+  --sidebar-ring: var(--accent); /* Lighter amber for dark mode focus */
+  --logo-icon-color-on-sidebar: 150 50% 55%; /* Logo Icon: A brighter green for dark mode */
+}
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground;
+}
+
+* {
+  @apply border-border;
+}
+
+@layer utilities {
+  .pac-container {
+    @apply z-[9999];
+  }
+  
+  .add-stop-form .pac-container {
+    @apply z-[10000]; /* Ensure this is higher than the parent card/container */
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-hidden {
+    display: none;
+  }
+}
+
+
+.logo-fade {
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  border-radius: 8px;
+  width: 150px;
+  height: 100px;
+}

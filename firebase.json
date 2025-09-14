@@ -1,0 +1,8 @@
+
+{
+  "hosting": {
+    "source": ".",
+    "app": "LogVida",
+    "location": "us-central1"
+  }
+}

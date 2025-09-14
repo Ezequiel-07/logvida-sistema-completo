@@ -1,0 +1,127 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions to check user roles and authentication status.
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function getUserData(userId) {
+      return get(/databases/$(database)/documents/users/$(userId)).data;
+    }
+
+    function isAuthUser(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isRole(role) {
+      return isSignedIn() && getUserData(request.auth.uid).role == role;
+    }
+
+    function isAdmin() {
+      return isRole('admin');
+    }
+
+    function isDriver() {
+      return isRole('driver');
+    }
+    
+    function isClient() {
+      return isRole('client');
+    }
+
+    // Rules for user profiles.
+    match /users/{userId} {
+      allow get, list: if isSignedIn();
+      allow create: if isAdmin();
+      allow update: if (isAuthUser(userId) && request.resource.data.role == resource.data.role) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Rules for clients (the companies).
+    match /clients/{clientId} {
+      allow get, list: if isAdmin() || (isClient() && getUserData(request.auth.uid).clientId == clientId) || isDriver();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Rules for vehicles.
+    match /vehicles/{vehicleId} {
+      allow get, list: if isAdmin() || isDriver();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Rules for route definitions (templates).
+    match /routes/{routeId} {
+      allow get, list: if isAdmin() || isDriver();
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Rules for vehicle maintenance records.
+    match /vehicleMaintenance/{maintId} {
+      allow get, list: if isAdmin() || isDriver();
+      allow write: if isAdmin();
+    }
+
+    // Rules for individual service orders.
+    match /orders/{orderId} {
+      allow get: if isAdmin() || 
+                   (isClient() && getUserData(request.auth.uid).clientId == resource.data.clientId) || 
+                   (isDriver() && request.auth.uid == resource.data.assignedDriverId);
+      
+      allow list: if isAdmin() ||
+                   (isClient() && request.query.where.clientId == getUserData(request.auth.uid).clientId) ||
+                   isDriver();
+                   
+      allow create: if isAdmin();
+
+      allow update: if isAdmin() || 
+                     (isDriver() && request.auth.uid == resource.data.assignedDriverId &&
+                      request.resource.data.clientId == resource.data.clientId &&
+                      request.resource.data.totalValue == resource.data.totalValue);
+
+      allow delete: if isAdmin();
+    }
+
+    // Rules for quote requests.
+    match /quotes/{quoteId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+      allow list: if isAdmin() || isDriver();
+    }
+
+    // Rules for real-time driver locations.
+    match /driverLocations/{driverId} {
+      allow write: if isAuthUser(driverId);
+      allow read: if isAdmin() || isClient() || isDriver();
+    }
+
+    // Rules for the chat system.
+    match /chats/{chatId} {
+      // A user can read or write to a chat document if they are a participant.
+      allow read, write: if isSignedIn() && request.auth.uid in resource.data.participants;
+      // Any signed in user can list chats, the client-side query ensures they only get their own.
+      allow list: if isSignedIn();
+      
+      // Rules for messages within a chat.
+      match /messages/{messageId} {
+        // A user can read or write messages if they are a participant of the parent chat.
+        allow read, write: if isSignedIn() && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participants;
+      }
+    }
+    
+    // Rules for general company settings.
+    match /companySettings/{settingId} {
+      allow read: if isAdmin() || isDriver();
+      allow write: if isAdmin();
+    }
+
+    // Rules for saved address locations.
+    match /namedLocations/{locationId} {
+      allow read: if isAdmin() || isDriver();
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}
