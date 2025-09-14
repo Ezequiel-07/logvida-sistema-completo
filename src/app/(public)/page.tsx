@@ -276,7 +276,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-             <div className="w-full md:w-1/2 flex justify-center items-center p-4 relative">
+             <div className="relative w-full md:w-1/2 flex justify-center items-center p-4">
                 <Image
                     src="/estrada.png"
                     alt="Estrada de asfalto"
@@ -301,9 +301,9 @@ export default function HomePage() {
                                     <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
                                     <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
                                     <g>
-                                        <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 120 C 125 105 110 95 110 110 Z" fill="#DC2626" />
+                                        <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 95 C 125 105 110 95 110 110 Z" fill="#DC2626" />
                                         <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6" />
-                                        <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 120 C 375 105 390 95 390 110 Z" fill="#DC2626" />
+                                        <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 95 C 375 105 390 95 390 110 Z" fill="#DC2626" />
                                         <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6" />
                                         <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
                                     </g>
@@ -548,4 +548,5 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+
+    
