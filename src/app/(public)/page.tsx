@@ -283,9 +283,9 @@ export default function HomePage() {
                   
                   <line x1="250" y1="60" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" strokeDasharray="0" />
 
-                  {/* Logo e Nome - visível apenas quando as portas estão fechadas */}
+                  {/* Logo - visível apenas quando as portas estão fechadas */}
                    <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                      <image href="/logvida-logo.png" x="225" y="160" height="50" width="50" />
+                      <image href="/logvida-logo.png" x="150" y="160" height="50" width="50" />
                    </g>
                 </svg>
               </div>
