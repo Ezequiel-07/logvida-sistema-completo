@@ -77,7 +77,6 @@ export default function HomePage() {
   const [init, setInit] = useState(false);
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const carouselTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const [isDrivingAway, setIsDrivingAway] = useState(false);
 
   const tiltOptions = {
     max: 25,
@@ -97,13 +96,6 @@ export default function HomePage() {
     });
   }, []);
   
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsDrivingAway(true);
-    }, 3000); // Start driving away after 3 seconds
-    return () => clearTimeout(timer);
-  }, []);
-
   const particlesOptions: RecursivePartial<IParticlesOptions> = useMemo(() => ({
     fullScreen: { enable: true, zIndex: 0 },
     detectRetina: true,
@@ -180,15 +172,11 @@ export default function HomePage() {
   };
 
   const vanDriveAwayVariants = {
-    initial: { scale: 1, y: 0 },
-    drive: { 
-      scale: 0, 
-      y: -100, 
-      transition: { 
-        duration: 1.5, 
-        ease: "easeInOut",
-        delay: 0.5, // Start shrinking after doors are mostly open
-      } 
+    initial: { scale: 1, y: 0, opacity: 1 },
+    drive: {
+      scale: 0,
+      y: -100,
+      opacity: 0,
     },
   };
 
@@ -262,7 +250,15 @@ export default function HomePage() {
                   style={{ perspective: "1000px" }}
                   variants={vanDriveAwayVariants}
                   initial="initial"
-                  animate={isDrivingAway ? "drive" : "initial"}
+                  animate="drive"
+                  transition={{
+                    delay: 2.5,
+                    duration: 1.5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    repeatDelay: 4,
+                  }}
                 >
                   <svg
                     viewBox="0 0 500 400"
@@ -276,24 +272,15 @@ export default function HomePage() {
                       </clipPath>
                     </defs>
                     
-                    {/* Pneus */}
+                    <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="2"/>
+                    <rect x="80" y="300" width="340" height="50" fill="#374151" />
                     <rect x="90" y="340" width="60" height="30" rx="6" fill="#4B5563"/>
                     <rect x="350" y="340" width="60" height="30" rx="6" fill="#4B5563"/>
-                    
-                    {/* Corpo do Veículo */}
-                    <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="2"/>
-                    
-                    {/* Para-choque */}
-                    <rect x="80" y="300" width="340" height="50" fill="#374151" />
 
-                    {/* Lanternas */}
                     <rect x="405" y="120" width="10" height="75" rx="4" fill="#DC2626" />
                     <rect x="85" y="120" width="10" height="75" rx="4" fill="#DC2626" />
-                    
-                    {/* Luz de Freio Superior */}
                     <rect x="200" y="45" width="100" height="10" rx="4" fill="#DC2626"/>
-                    
-                    {/* Conteúdo dentro da porta, visível quando aberta */}
+
                     <image
                       href="/caixascarro.png"
                       x="110" y="70" width="280" height="230"
@@ -302,7 +289,6 @@ export default function HomePage() {
                       className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
                     />
 
-                    {/* Portas */}
                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                         <rect
                             x="100" y="60" width="150" height="280" rx="8"
@@ -316,10 +302,8 @@ export default function HomePage() {
                         />
                     </g>
                     
-                    {/* Linha Central */}
                     <line x1="250" y1="60" x2="250" y2="340" stroke="#FFFFFF" strokeWidth="2" />
                     
-                    {/* Maçaneta e Logo */}
                     <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
                       <rect x="185" y="210" width="50" height="6" rx="3" fill="#1F2937" />
                       <rect x="265" y="210" width="50" height="6" rx="3" fill="#1F2937" />
