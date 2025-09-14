@@ -258,14 +258,13 @@ export default function HomePage() {
                   
                   {/* Corpo do Veículo */}
                   <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#F3F4F6"/>
+                  
+                  {/* Para-choque */}
                   <rect x="80" y="300" width="340" height="50" fill="#374151" />
-                  
+
                   {/* Lanternas */}
-                  <path d="M410 120 C 420 130, 420 230, 410 240 L 400 240 L 400 120 Z" fill="#4B5563"/>
-                  <path d="M402 125 C 412 135, 412 225, 402 235" fill="none" stroke="#EF4444" strokeWidth="6"/>
-                  
-                  <path d="M90 120 C 80 130, 80 230, 90 240 L 100 240 L 100 120 Z" fill="#4B5563"/>
-                  <path d="M98 125 C 88 135, 88 225, 98 235" fill="none" stroke="#EF4444" strokeWidth="6"/>
+                  <rect x="405" y="120" width="10" height="150" rx="4" fill="#DC2626" />
+                  <rect x="85" y="120" width="10" height="150" rx="4" fill="#DC2626" />
                   
                   {/* Luz de Freio Superior */}
                   <rect x="200" y="45" width="100" height="10" rx="4" fill="#DC2626"/>
@@ -298,8 +297,9 @@ export default function HomePage() {
                   
                   {/* Maçaneta e Logo */}
                   <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                    <rect x="180" y="190" width="140" height="20" rx="5" fill="#1F2937" />
-                    <image href="/logvida-logo.png" x="150" y="220" height="40" width="40" />
+                    <rect x="185" y="210" width="50" height="6" rx="3" fill="#1F2937" />
+                    <rect x="265" y="210" width="50" height="6" rx="3" fill="#1F2937" />
+                    <image href="/logvida-logo.png" x="180" y="150" height="40" width="40" />
                   </g>
                 </svg>
               </div>
