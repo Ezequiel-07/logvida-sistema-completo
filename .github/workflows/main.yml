@@ -1,0 +1,57 @@
+# Workflow do GitHub Actions para build e deploy no Firebase App Hosting
+
+# Nome do workflow
+name: Deploy to Firebase App Hosting
+
+# Gatilho: executa este workflow sempre que houver um push na branch 'main'
+on:
+  push:
+    branches:
+      - main
+
+# Define as permissões necessárias para o deploy no Firebase
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  id-token: write
+
+# Define o trabalho a ser executado
+jobs:
+  build_and_deploy:
+    # Usa a versão mais recente do Ubuntu como ambiente
+    runs-on: ubuntu-latest
+    
+    # Etapas do trabalho
+    steps:
+      # 1. Clona o código do seu repositório para o ambiente de execução
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js para a versão 18
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 3. Instala as dependências do projeto
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Faz o build do projeto Next.js para produção
+      - name: Build project
+        run: npm run build
+
+      # 5. Faz o deploy para o Firebase App Hosting usando a ação oficial do Firebase
+      - name: Deploy to Firebase App Hosting
+        uses: firebase/actions/app-hosting-deploy@v0
+        with:
+          # O ID do seu projeto Firebase
+          # Nota: Você pode encontrar isso no console do Firebase
+          projectId: logvida-app
+          # A localização do seu backend do App Hosting (us-central1 é comum)
+          location: us-central1
+        env:
+          # Esta variável é injetada automaticamente pelo GitHub Actions
+          # e usada para autenticação segura com o Firebase.
+          GOOGLE_GHA_CREDS_PATH: ${{ secrets.GOOGLE_GHA_CREDS_PATH }}
