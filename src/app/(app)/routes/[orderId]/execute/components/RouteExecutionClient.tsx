@@ -134,8 +134,13 @@ export function RouteExecutionClient() {
     const initBackgroundGeolocation = async () => {
       if (!Capacitor.isNativePlatform()) return;
       try {
-        const onLocation = (location: Location) => setCurrentLocation(location);
-        const onMotionChange = (event: MotionChangeEvent) => console.log('[motionchange]', event);
+        const onLocation = (location: Location) => {
+          console.log('[location] -', location);
+          setCurrentLocation(location);
+        };
+        const onMotionChange = (event: MotionChangeEvent) => {
+          console.log('[motionchange] -', event.isMoving, event.location);
+        };
         
         if (!currentUser) return;
         
@@ -143,19 +148,28 @@ export function RouteExecutionClient() {
           desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
           distanceFilter: 10,
           stopOnTerminate: false,
-          startOnBoot: true,
-          autoSync: true,
-          params: { userId: currentUser?.id },
+          startOnBoot: true, // Auto start on boot
+          foregroundService: true, // Enable Foreground Service for Android
+          autoSync: true, // Auto-sync to your server
+          params: { userId: currentUser.id },
+          url: `${window.location.origin}/api/update-driver-location`, // Your server endpoint
+          headers: {
+            // Add any required headers, like auth tokens, if your API needs them
+          }
         };
 
         const state: State = await BackgroundGeolocation.ready(config);
 
-        if (!state.enabled) BackgroundGeolocation.start();
+        if (!state.enabled) {
+          console.log("Starting BackgroundGeolocation");
+          await BackgroundGeolocation.start();
+        }
 
         BackgroundGeolocation.onLocation(onLocation);
         BackgroundGeolocation.onMotionChange(onMotionChange);
       } catch (e) {
         console.error("Erro ao inicializar Background Geolocation", e);
+        toast({ title: "Erro de Geolocalização", description: "Não foi possível iniciar o rastreamento em segundo plano.", variant: "destructive" });
       }
     }
     

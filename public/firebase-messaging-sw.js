@@ -1,4 +1,4 @@
-/ This file is the entry point for the Firebase Messaging Service Worker.
+// This file is the entry point for the Firebase Messaging Service Worker.
 // It must be in the public directory to be accessible at the root of the domain.
 // The service worker runs in a different context from the main application,
 // so we need to initialize Firebase again here.
