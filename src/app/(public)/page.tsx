@@ -303,7 +303,11 @@ export default function HomePage() {
                                     
                                     {/* --- IMAGEM DE FUNDO --- */}
                                     {/* Esta imagem aparece quando as portas se abrem */}
-                                    <image href="/caixascarro.png" x="125" y="90" height="250" width="250" />
+                                    <foreignObject x="125" y="90" width="250" height="250">
+                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    </foreignObject>
                                     
                                     {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
                                     {/* Corpo principal branco da van */}
@@ -345,7 +349,7 @@ export default function HomePage() {
                                     <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
                                     {/* Maçaneta da porta */}
                                     <g>
-                                      <rect x="140" y="208" width="100" height="8" rx="3" fill="#1F2937" />
+                                      <rect x="140" y="260" width="202" height="8" rx="3" fill="#1F2937" />
                                     </g>
                                 </g>
                             </svg>
@@ -581,3 +585,4 @@ export default function HomePage() {
     
 
     
+
