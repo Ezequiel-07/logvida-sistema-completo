@@ -149,23 +149,21 @@ export default function HomePage() {
   }, [startCarouselTimer]);
   
   const handleVanHoverStart = () => {
-    setHasHovered(true);
     if (driveTimeoutRef.current) {
       clearTimeout(driveTimeoutRef.current);
     }
+    setHasHovered(true);
   };
 
   const handleVanHoverEnd = () => {
-    if (driveTimeoutRef.current) {
-      clearTimeout(driveTimeoutRef.current);
-    }
-    driveTimeoutRef.current = setTimeout(async () => {
-      if (hasHovered) {
+    if (hasHovered) {
+      driveTimeoutRef.current = setTimeout(async () => {
         await controls.start("drive");
-        controls.set("hidden"); // Se oculta instantaneamente
-        controls.set("initial"); // E reseta para o estado inicial, pronto para a próxima interação
-      }
-    }, 2000);
+        // Reset animation state immediately after it finishes
+        controls.set("hidden");
+        controls.set("initial");
+      }, 2000); // 2-second delay before driving away
+    }
   };
 
 
@@ -317,8 +315,8 @@ export default function HomePage() {
 
                             {/* <!-- Maçanetas --> */}
                             <g>
-                              <rect x="140" y="208" width="100" height="2" fill="#1f2937"/>
-                              <rect x="260" y="208" width="100" height="2" fill="#1f2937"/>
+                              <rect x="140" y="208" width="100" height="8" fill="#1f2937" rx="2" />
+                              <rect x="260" y="208" width="100" height="8" fill="#1f2937" rx="2" />
                             </g>
                             
                             {/* <!-- Imagem de Carga (invisível inicialmente) --> */}
@@ -330,7 +328,7 @@ export default function HomePage() {
                                 <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
                                     <rect x="100" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
                                     {/* <!-- Logo da Empresa --> */}
-                                    <image href="/logvida-logo.png" x="125" y="160" height="60" width="115.2" className="transition-opacity duration-300 group-hover:opacity-0" />
+                                    <image href="/logvida-logo.png" x="120" y="165" height="48" width="120" className="transition-opacity duration-300 group-hover:opacity-0" />
                                 </g>
                                 {/* <!-- Porta Direita --> */}
                                 <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
