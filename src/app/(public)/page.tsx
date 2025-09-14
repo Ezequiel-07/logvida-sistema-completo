@@ -287,7 +287,7 @@ export default function HomePage() {
                 >
                     <div className="absolute inset-x-0 bottom-0 h-2/5 z-0">
                       <Image 
-                        src="https://picsum.photos/seed/road-texture/600/200" 
+                        src="/estrada.png" 
                         alt="Estrada de asfalto"
                         width={600}
                         height={200}
@@ -299,11 +299,10 @@ export default function HomePage() {
                       <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                           <defs>
                           <clipPath id="cargo-clip">
-                              <path d="M 130 50 Q 130 40 140 40 L 360 40 Q 370 40 370 50 L 370 340 Q 370 350 360 350 L 140 350 Q 130 350 130 340 Z" />
+                              <path d="M 120 100 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
                           </clipPath>
                           </defs>
-                          
-                          <g>
+                          <g transform="scale(1.0)">
                               {/* <!-- Pneus --> */}
                               <rect x="70" y="360" width="60" height="30" rx="8" fill="#2d3748" />
                               <rect x="370" y="360" width="60" height="30" rx="8" fill="#2d3748" />
@@ -327,22 +326,22 @@ export default function HomePage() {
                               </g>
                               
                               {/* <!-- Imagem de Carga --> */}
-                              <image href="/caixascarro.png" x="130" y="50" width="240" height="310" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
+                              <image href="/caixascarro.png" x="120" y="90" width="260" height="250" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
                               
                               {/* <!-- Portas --> */}
                               <g className="origin-center" style={ { transformOrigin: "center" } }>
                                   <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
-                                      <rect x="130" y="40" width="115" height="310" rx="8" fill="#FFFFFF" />
+                                      <rect x="120" y="90" width="130" height="250" rx="8" fill="#FFFFFF" />
                                       {/* <!-- Logo --> */}
-                                      <image href="/logvida-logo.png" x="150" y="100" height="80" width="100" className="transition-opacity duration-300 group-hover:opacity-0" />
+                                      <image href="/logvida-logo.png" x="140" y="150" height="60" width="100" className="transition-opacity duration-300 group-hover:opacity-0" />
                                   </g>
                                   <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
-                                      <rect x="255" y="40" width="115" height="310" rx="8" fill="#FFFFFF" />
+                                      <rect x="250" y="90" width="130" height="250" rx="8" fill="#FFFFFF" />
                                   </g>
                               </g>
                       
                               {/* <!-- Linha central da porta --> */}
-                              <line x1="245" y1="50" x2="245" y2="350" stroke="#e5e7eb" strokeWidth="3" />
+                              <line x1="250" y1="100" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" />
                               
                               {/* <!-- Maçaneta --> */}
                               <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
