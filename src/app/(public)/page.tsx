@@ -240,53 +240,67 @@ export default function HomePage() {
                 className="relative w-full max-w-sm flex justify-center items-center group"
                 style={{ perspective: "1000px" }}
               >
-                 <svg
+                <svg
                   viewBox="0 0 500 400"
                   className="w-full h-auto drop-shadow-2xl"
                   xmlns="http://www.w3.org/2000/svg"
                   data-ai-hint="utility van back"
                 >
+                  <defs>
+                    <clipPath id="cargo-clip">
+                      <rect x="110" y="70" width="280" height="260" rx="12" />
+                    </clipPath>
+                  </defs>
+                  
                   {/* Pneus */}
                   <rect x="90" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
                   <rect x="350" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
-
-                  {/* Corpo do Veículo */}
-                  <rect x="80" y="40" width="340" height="320" rx="24" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="4"/>
                   
-                  <clipPath id="cargo-clip">
-                    <rect x="110" y="70" width="280" height="260" rx="12" />
-                  </clipPath>
+                  {/* Corpo do Veículo */}
+                  <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#F3F4F6"/>
+                  <rect x="80" y="300" width="340" height="50" fill="#374151" />
+                  
+                  {/* Lanternas */}
+                  <path d="M410 120 C 420 130, 420 230, 410 240 L 400 240 L 400 120 Z" fill="#4B5563"/>
+                  <path d="M402 125 C 412 135, 412 225, 402 235" fill="none" stroke="#EF4444" strokeWidth="6"/>
+                  
+                  <path d="M90 120 C 80 130, 80 230, 90 240 L 100 240 L 100 120 Z" fill="#4B5563"/>
+                  <path d="M98 125 C 88 135, 88 225, 98 235" fill="none" stroke="#EF4444" strokeWidth="6"/>
+                  
+                  {/* Luz de Freio Superior */}
+                  <rect x="200" y="45" width="100" height="10" rx="4" fill="#DC2626"/>
+                  
+                  {/* Conteúdo dentro da porta, visível quando aberta */}
                   <image
                     href="/fiorinoetiqueta.png"
                     x="110" y="70" width="280" height="260"
                     preserveAspectRatio="xMidYMid slice"
                     clipPath="url(#cargo-clip)"
+                    className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
                   />
-                  
-                  {/* Lanternas Vermelhas */}
-                  <rect x="70" y="180" width="20" height="40" rx="6" fill="#EF4444"/>
-                  <rect x="410" y="180" width="20" height="40" rx="6" fill="#EF4444"/>
-                  
-                  {/* Portas Brancas */}
+
+                  {/* Portas */}
                   <g className="origin-center" style={{ transformOrigin: "center" }}>
-                    <rect
-                      x="100" y="60" width="150" height="280" rx="8"
-                      className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                      fill="#FFFFFF" stroke="#e5e7eb" strokeWidth="2"
-                    />
-                    <rect
-                      x="250" y="60" width="150" height="280" rx="8"
-                      className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                      fill="#FFFFFF" stroke="#e5e7eb" strokeWidth="2"
-                    />
+                      <rect
+                          x="100" y="60" width="150" height="280" rx="8"
+                          className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
+                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1"
+                      />
+                      <rect
+                          x="250" y="60" width="150" height="280" rx="8"
+                          className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
+                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1"
+                      />
                   </g>
                   
-                  <line x1="250" y1="60" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="3" strokeDasharray="0" />
-
-                  {/* Logo - visível apenas quando as portas estão fechadas */}
-                   <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                      <image href="/logvida-logo.png" x="150" y="160" height="50" width="50" />
-                   </g>
+                  {/* Linha Central */}
+                  <line x1="250" y1="60" x2="250" y2="340" stroke="#D1D5DB" strokeWidth="2" />
+                  
+                  {/* Maçaneta e Logo */}
+                  <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
+                    <rect x="180" y="190" width="140" height="20" rx="5" fill="#1F2937" />
+                    <image href="/logvida-logo.png" x="150" y="220" height="40" width="40" />
+                  </g>
                 </svg>
               </div>
             </div>
