@@ -285,13 +285,6 @@ export default function HomePage() {
                   animate={controls}
                   initial="initial"
                 >
-                    <Image
-                      src="/kamgoo.png"
-                      alt="Estrada"
-                      fill
-                      className="object-cover absolute inset-0 z-0"
-                      data-ai-hint="road street"
-                    />
                     <div className="relative z-10">
                       <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                           <defs>
