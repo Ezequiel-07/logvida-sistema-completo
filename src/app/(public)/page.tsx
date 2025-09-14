@@ -284,69 +284,61 @@ export default function HomePage() {
                   animate={controls}
                   initial="initial"
                 >
-                    <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
+                    <svg viewBox="0 0 550 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
                         <defs>
                         <clipPath id="cargo-clip">
                             <path d="M 120 100 Q 120 90 130 90 L 370 90 Q 380 90 380 100 L 380 330 Q 380 340 370 340 L 130 340 Q 120 340 120 330 Z" />
                         </clipPath>
                         </defs>
-                        {/* 
-                          PARA EDITAR O TAMANHO TOTAL DA VAN:
-                          Altere o valor 'scale(1.0)' abaixo. 
-                          - scale(0.9) diminui em 10%
-                          - scale(1.1) aumenta em 10%
-                        */}
-                        <g transform="scale(1.0)">
-                            {/* <!-- Pneus --> */}
-                            <rect x="70" y="360" width="60" height="30" rx="8" fill="#2d3748" />
-                            <rect x="370" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                         {/* <!-- Pneus --> */}
+                        <rect x="70" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                        <rect x="370" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                        
+                        {/* <!-- Carroceria Principal --> */}
+                        <path d="M 80 345 Q 60 345 60 325 L 60 110 Q 60 90 80 85 L 100 80 L 400 80 L 420 85 Q 440 90 440 110 L 440 325 Q 440 345 420 345 Z" fill="#FFFFFF" />
+
+                        {/* <!-- Para-choque inferior --> */}
+                        <rect x="50" y="340" width="400" height="30" rx="6" fill="#1f2937" />
+
+                        {/* <!-- Lanternas Traseiras --> */}
+                        <g>
+                            {/* <!-- Lanterna Esquerda --> */}
+                            <path d="M 80 100 L 80 280 C 80 295 95 305 105 295 L 105 110 C 95 95 80 85 80 100 Z" fill="#DC2626"/>
+                            <path d="M 82 230 L 82 270 C 82 280 92 285 98 278 L 98 238 C 92 225 82 220 82 230 Z" fill="#FFFFFF" opacity="0.6"/>
                             
-                            {/* <!-- Carroceria Principal --> */}
-                            <path d="M 80 345 Q 60 345 60 325 L 60 110 Q 60 90 80 85 L 100 80 L 400 80 L 420 85 Q 440 90 440 110 L 440 325 Q 440 345 420 345 Z" fill="#FFFFFF" />
-
-                            {/* <!-- Para-choque inferior --> */}
-                            <rect x="50" y="340" width="400" height="30" rx="6" fill="#1f2937" />
-
-                            {/* <!-- Lanternas Traseiras --> */}
-                            <g>
-                                {/* <!-- Lanterna Esquerda --> */}
-                                <path d="M 80 100 L 80 280 C 80 295 95 305 105 295 L 105 110 C 95 95 80 85 80 100 Z" fill="#DC2626"/>
-                                <path d="M 82 230 L 82 270 C 82 280 92 285 98 278 L 98 238 C 92 225 82 220 82 230 Z" fill="#FFFFFF" opacity="0.6"/>
-                                
-                                {/* <!-- Lanterna Direita --> */}
-                                <path d="M 420 100 L 420 280 C 420 295 405 305 395 295 L 395 110 C 405 95 420 85 420 100 Z" fill="#DC2626"/>
-                                <path d="M 418 230 L 418 270 C 418 280 408 285 402 278 L 402 238 C 408 225 418 220 418 230 Z" fill="#FFFFFF" opacity="0.6"/>
-                                
-                                {/* <!-- Luz de Freio Superior --> */}
-                                <rect x="180" y="60" width="140" height="12" rx="4" fill="#DC2626" />
-                            </g>
-
-                            {/* <!-- Maçanetas --> */}
-                            <g>
-                              <rect x="140" y="208" width="100" height="8" rx="4" fill="#1f2937"/>
-                              <rect x="260" y="208" width="100" height="8" rx="4" fill="#1f2937"/>
-                            </g>
+                            {/* <!-- Lanterna Direita --> */}
+                            <path d="M 420 100 L 420 280 C 420 295 405 305 395 295 L 395 110 C 405 95 420 85 420 100 Z" fill="#DC2626"/>
+                            <path d="M 418 230 L 418 270 C 418 280 408 285 402 278 L 402 238 C 408 225 418 220 418 230 Z" fill="#FFFFFF" opacity="0.6"/>
                             
-                            {/* <!-- Imagem de Carga (invisível inicialmente) --> */}
-                            <image href="/caixascarro.png" x="120" y="90" width="260" height="250" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
-                            
-                            {/* <!-- Portas e Logo --> */}
-                            <g className="origin-center" style={{ transformOrigin: "center" }}>
-                                {/* <!-- Porta Esquerda --> */}
-                                <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
-                                    <rect x="100" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
-                                    {/* <!-- Logo da Empresa --> */}
-                                    <image href="/logvida-logo.png" x="125" y="150" height="48" width="100" className="transition-opacity duration-300 group-hover:opacity-0" />
-                                </g>
-                                {/* <!-- Porta Direita --> */}
-                                <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
-                                  <rect x="250" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
-                                </g>
-                            </g>
-
-                            {/* <!-- Linha da Porta Central --> */}
-                            <line x1="250" y1="80" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="2" />
+                            {/* <!-- Luz de Freio Superior --> */}
+                            <rect x="180" y="60" width="140" height="12" rx="4" fill="#DC2626" />
                         </g>
+
+                        {/* <!-- Maçanetas --> */}
+                        <g>
+                          <rect x="140" y="208" width="100" height="8" rx="4" fill="#1f2937"/>
+                          <rect x="260" y="208" width="100" height="8" rx="4" fill="#1f2937"/>
+                        </g>
+                        
+                        {/* <!-- Imagem de Carga (invisível inicialmente) --> */}
+                        <image href="/caixascarro.png" x="120" y="90" width="260" height="250" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
+                        
+                        {/* <!-- Portas e Logo --> */}
+                        <g className="origin-center" style={{ transformOrigin: "center" }}>
+                            {/* <!-- Porta Esquerda --> */}
+                            <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]">
+                                <rect x="100" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
+                                {/* <!-- Logo da Empresa --> */}
+                                <image href="/logvida-logo.png" x="115" y="150" height="48" width="120" className="transition-opacity duration-300 group-hover:opacity-0" />
+                            </g>
+                            {/* <!-- Porta Direita --> */}
+                            <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
+                              <rect x="250" y="80" width="150" height="260" rx="8" fill="#FFFFFF" />
+                            </g>
+                        </g>
+
+                        {/* <!-- Linha da Porta Central --> */}
+                        <line x1="250" y1="80" x2="250" y2="340" stroke="#e5e7eb" strokeWidth="2" />
                     </svg>
                 </motion.div>
              </div>
