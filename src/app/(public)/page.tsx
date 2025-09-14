@@ -257,14 +257,14 @@ export default function HomePage() {
                   <rect x="350" y="340" width="60" height="20" rx="6" fill="#4B5563"/>
                   
                   {/* Corpo do Veículo */}
-                  <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#F3F4F6"/>
+                  <path d="M 80 80 Q 80 40, 120 40 L 380 40 Q 420 40, 420 80 L 420 300 L 80 300 Z" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="2"/>
                   
                   {/* Para-choque */}
                   <rect x="80" y="300" width="340" height="50" fill="#374151" />
 
                   {/* Lanternas */}
-                  <rect x="405" y="120" width="10" height="150" rx="4" fill="#DC2626" />
-                  <rect x="85" y="120" width="10" height="150" rx="4" fill="#DC2626" />
+                  <rect x="405" y="120" width="10" height="75" rx="4" fill="#DC2626" />
+                  <rect x="85" y="120" width="10" height="75" rx="4" fill="#DC2626" />
                   
                   {/* Luz de Freio Superior */}
                   <rect x="200" y="45" width="100" height="10" rx="4" fill="#DC2626"/>
@@ -283,23 +283,23 @@ export default function HomePage() {
                       <rect
                           x="100" y="60" width="150" height="280" rx="8"
                           className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                          fill="#FFFFFF" stroke="#D1D5DB" strokeWidth="2"
+                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="2"
                       />
                       <rect
                           x="250" y="60" width="150" height="280" rx="8"
                           className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                          fill="#FFFFFF" stroke="#D1D5DB" strokeWidth="2"
+                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="2"
                       />
                   </g>
                   
                   {/* Linha Central */}
-                  <line x1="250" y1="60" x2="250" y2="340" stroke="#D1D5DB" strokeWidth="2" />
+                  <line x1="250" y1="60" x2="250" y2="340" stroke="#E5E7EB" strokeWidth="2" />
                   
                   {/* Maçaneta e Logo */}
                   <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
                     <rect x="185" y="210" width="50" height="6" rx="3" fill="#1F2937" />
                     <rect x="265" y="210" width="50" height="6" rx="3" fill="#1F2937" />
-                    <image href="/logvida-logo.png" x="140" y="145" height="50" width="50" />
+                    <image href="/logvida-logo.png" x="135" y="140" height="60" width="60" />
                   </g>
                 </svg>
               </div>
