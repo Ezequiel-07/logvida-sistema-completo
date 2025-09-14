@@ -77,7 +77,9 @@ export default function HomePage() {
   const [init, setInit] = useState(false);
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const carouselTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const [isVanDriving, setIsVanDriving] = useState(false);
+  
+  const [startDriving, setStartDriving] = useState(false);
+  const [showVan, setShowVan] = useState(true);
   const driveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const tiltOptions = {
@@ -145,20 +147,26 @@ export default function HomePage() {
     startCarouselTimer();
   }, [startCarouselTimer]);
   
-  const handleVanHover = () => {
+  const handleVanHoverEnd = () => {
     if (driveTimeoutRef.current) {
-        clearTimeout(driveTimeoutRef.current);
+      clearTimeout(driveTimeoutRef.current);
     }
+    // Set a timeout to trigger the driving animation after the user stops hovering
     driveTimeoutRef.current = setTimeout(() => {
-        setIsVanDriving(true);
-    }, 2000); // Wait 2 seconds after hover to start driving
+      setStartDriving(true);
+    }, 1500); // 1.5 second delay after hover ends
   };
 
   const handleAnimationComplete = () => {
-    // After the van "drives off", wait a moment and then reset
-    setTimeout(() => {
-        setIsVanDriving(false);
-    }, 2000);
+    // When the "drive" animation completes, hide the van
+    if (startDriving) {
+      setShowVan(false);
+      // After a delay, show it again and reset the driving state for the next cycle
+      setTimeout(() => {
+        setStartDriving(false);
+        setShowVan(true);
+      }, 1000); // 1-second delay before reappearing
+    }
   };
   
   const carouselVariants = {
@@ -191,11 +199,7 @@ export default function HomePage() {
 
   const vanDriveAwayVariants = {
     initial: { scale: 1, y: 0, opacity: 1 },
-    drive: {
-      scale: 0,
-      y: -100,
-      opacity: 0,
-    },
+    drive: { scale: 0, y: -100, opacity: 0 },
   };
 
 
@@ -263,83 +267,83 @@ export default function HomePage() {
               </div>
             </div>
             <div className="w-full md:w-1/2 flex justify-center items-center p-4">
-              <motion.div
-                  className="relative w-full max-w-sm flex justify-center items-center group"
-                  style={{ perspective: "1000px" }}
-                  onMouseEnter={handleVanHover}
-                  variants={vanDriveAwayVariants}
-                  initial="initial"
-                  animate={isVanDriving ? "drive" : "initial"}
-                  onAnimationComplete={handleAnimationComplete}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                >
-                  <svg
-                    viewBox="0 0 500 400"
-                    className="w-full h-auto drop-shadow-2xl"
-                    xmlns="http://www.w3.org/2000/svg"
-                    data-ai-hint="utility van back"
-                  >
-                    <defs>
-                        <clipPath id="cargo-clip">
-                        <rect x="110" y="70" width="280" height="260" rx="12" />
-                        </clipPath>
-                    </defs>
-                    
-                    <g id="body">
+               {showVan && (
+                  <motion.div
+                      className="relative w-full max-w-sm flex justify-center items-center group"
+                      style={{ perspective: "1000px" }}
+                      onHoverEnd={handleVanHoverEnd}
+                      variants={vanDriveAwayVariants}
+                      animate={startDriving ? "drive" : "initial"}
+                      transition={{ duration: 1.5, ease: "easeIn" }}
+                      onAnimationComplete={handleAnimationComplete}
+                    >
+                    <svg
+                      viewBox="0 0 500 400"
+                      className="w-full h-auto drop-shadow-2xl"
+                      xmlns="http://www.w3.org/2000/svg"
+                      data-ai-hint="utility van back"
+                    >
+                      <defs>
+                          <clipPath id="cargo-clip">
+                          <rect x="110" y="70" width="280" height="260" rx="12" />
+                          </clipPath>
+                      </defs>
+                      
+                      <g id="body">
                         <path d="M 80 340 Q 60 340 60 320 L 60 120 Q 60 80 100 70 L 400 70 Q 440 80 440 120 L 440 320 Q 440 340 420 340 Z" fill="#FFFFFF" />
+                        <path d="M 60 120 L 60 100 L 440 100 L 440 120 Q 440 80 400 70 L 100 70 Q 60 80 60 120 Z" fill="#e5e7eb" />
                         <rect x="50" y="340" width="400" height="30" rx="6" fill="#374151" />
-                    </g>
-                    
-                    <g id="tires">
+                      </g>
+                      
+                      <g id="tires">
                         <rect x="90" y="360" width="80" height="25" rx="8" fill="#2d3748" />
                         <rect x="330" y="360" width="80" height="25" rx="8" fill="#2d3748" />
-                    </g>
-                    
-                    <g id="lights">
-                        <path d="M 70 120 C 65 120, 65 125, 70 130 L 70 280 C 65 285, 65 290, 70 290 L 80 290 L 80 120 Z" fill="#DC2626" />
-                        <path d="M 430 120 C 435 120, 435 125, 430 130 L 430 280 C 435 285, 435 290, 430 290 L 420 290 L 420 120 Z" fill="#DC2626" />
-                        <rect x="180" y="55" width="140" height="10" rx="4" fill="#DC2626"/>
-                        
-                        <path d="M 72 240 C 70 240, 70 242, 72 244 L 72 280 C 70 282, 70 284, 72 286 L 78 286 L 78 240 Z" fill="#FFFFFF" />
-                        <path d="M 428 240 C 430 240, 430 242, 428 244 L 428 280 C 430 282, 430 284, 428 286 L 422 286 L 422 240 Z" fill="#FFFFFF" />
-                    </g>
-                    
-                    <g id="details">
-                        <rect x="100" y="300" width="300" height="8" rx="4" fill="#6b7280" />
-                        <rect x="180" y="302" width="40" height="4" rx="2" fill="#e5e7eb" />
-                        <rect x="280" y="302" width="40" height="4" rx="2" fill="#e5e7eb" />
-                    </g>
+                      </g>
+                      
+                      <g id="lights">
+                          <path d="M 80 110 L 80 290 Q 75 295 70 290 L 70 110 Q 75 105 80 110 Z" fill="#DC2626" />
+                          <path d="M 420 110 L 420 290 Q 425 295 430 290 L 430 110 Q 425 105 420 110 Z" fill="#DC2626" />
+                          <path d="M 80 250 L 80 290 Q 75 295 70 290 L 70 250 Z" fill="#FFFFFF40" />
+                          <path d="M 420 250 L 420 290 Q 425 295 430 290 L 430 250 Z" fill="#FFFFFF40" />
+                          <rect x="180" y="55" width="140" height="10" rx="4" fill="#DC2626"/>
+                      </g>
 
-                    <image
-                        href="/caixascarro.png"
-                        x="110" y="70" width="280" height="230"
-                        preserveAspectRatio="xMidYMid slice"
-                        clipPath="url(#cargo-clip)"
-                        className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
-                    />
+                      <rect x="180" y="315" width="140" height="10" rx="4" fill="#a0aec0" />
 
-                    <g className="origin-center" style={{ transformOrigin: "center" }}>
-                        <rect
-                            x="100" y="70" width="150" height="270" rx="8"
-                            className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                            fill="#FFFFFF"
-                        />
-                        <rect
-                            x="250" y="70" width="150" height="270" rx="8"
-                            className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                            fill="#FFFFFF"
-                        />
-                    </g>
+                      <g id="handle-area">
+                        <rect x="180" y="195" width="60" height="8" rx="4" fill="#2d3748" />
+                        <rect x="260" y="195" width="60" height="8" rx="4" fill="#2d3748" />
+                      </g>
 
-                    <line x1="250" y1="70" x2="250" y2="340" stroke="#f3f4f6" strokeWidth="2" />
-                    
-                    <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                        <rect x="195" y="302" width="50" height="4" rx="2" fill="#4b5563" />
-                        <rect x="255" y="302" width="50" height="4" rx="2" fill="#4b5563" />
-                         <image href="/logvida-logo.png" x="120" y="150" height="80" width="80" />
-                    </g>
-                  </svg>
-              </motion.div>
+                      <image
+                          href="/caixascarro.png"
+                          x="110" y="70" width="280" height="245"
+                          preserveAspectRatio="xMidYMid slice"
+                          clipPath="url(#cargo-clip)"
+                          className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0"
+                      />
+
+                      <g className="origin-center" style={{ transformOrigin: "center" }}>
+                          <rect
+                              x="100" y="70" width="150" height="270" rx="8"
+                              className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
+                              fill="#FFFFFF"
+                          />
+                          <rect
+                              x="250" y="70" width="150" height="270" rx="8"
+                              className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
+                              fill="#FFFFFF"
+                          />
+                      </g>
+
+                      <line x1="250" y1="70" x2="250" y2="340" stroke="#f3f4f6" strokeWidth="2" />
+                      
+                      <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
+                           <image href="/logvida-logo.png" x="120" y="150" height="120" width="120" />
+                      </g>
+                    </svg>
+                  </motion.div>
+                )}
             </div>
           </section>
 
