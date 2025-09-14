@@ -283,12 +283,12 @@ export default function HomePage() {
                       <rect
                           x="100" y="60" width="150" height="280" rx="8"
                           className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]"
-                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1"
+                          fill="#FFFFFF" stroke="#D1D5DB" strokeWidth="2"
                       />
                       <rect
                           x="250" y="60" width="150" height="280" rx="8"
                           className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]"
-                          fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="1"
+                          fill="#FFFFFF" stroke="#D1D5DB" strokeWidth="2"
                       />
                   </g>
                   
@@ -299,7 +299,7 @@ export default function HomePage() {
                   <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
                     <rect x="185" y="210" width="50" height="6" rx="3" fill="#1F2937" />
                     <rect x="265" y="210" width="50" height="6" rx="3" fill="#1F2937" />
-                    <image href="/logvida-logo.png" x="180" y="150" height="40" width="40" />
+                    <image href="/logvida-logo.png" x="140" y="145" height="50" width="50" />
                   </g>
                 </svg>
               </div>
