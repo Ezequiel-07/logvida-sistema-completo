@@ -294,15 +294,15 @@ export default function HomePage() {
                         </defs>
                         
                         {/* <!-- Pneus --> */}
-                        <rect x="90" y="360" width="55" height="30" rx="8" fill="#2d3748" />
-                        <rect x="355" y="360" width="55" height="30" rx="8" fill="#2d3748" />
+                        <rect x="70" y="360" width="60" height="30" rx="8" fill="#2d3748" />
+                        <rect x="370" y="360" width="60" height="30" rx="8" fill="#2d3748" />
                         
-                        {/* <!-- Carroceria Principal --> */}
-                        <path d="M 100 345 Q 80 345 80 325 L 80 70 Q 80 50 100 45 L 120 40 L 380 40 L 400 45 Q 420 50 420 70 L 420 325 Q 420 345 400 345 Z" fill="#FFFFFF" />
+                        {/* <!-- Carroceria Principal (contorno e base) --> */}
+                        <path d="M 100 345 Q 80 345 80 325 L 80 70 Q 80 50 100 45 L 120 40 L 380 40 L 400 45 Q 420 50 420 70 L 420 325 Q 420 345 400 345 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
 
                         {/* <!-- Para-choque inferior --> */}
                         <rect x="70" y="340" width="360" height="30" rx="6" fill="#1f2937" />
-
+                        
                         {/* <!-- Lanternas Traseiras --> */}
                         <g>
                             {/* <!-- Lanterna Esquerda --> */}
@@ -316,14 +316,9 @@ export default function HomePage() {
                             {/* <!-- Luz de freio superior --> */}
                             <rect x="200" y="42" width="100" height="10" rx="4" fill="#DC2626" />
                         </g>
-
-                        {/* <!-- Maçaneta --> */}
-                        <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
-                          <rect x="200" y="190" width="100" height="18" rx="5" fill="#1F2937" />
-                        </g>
                         
                         {/* <!-- Imagem de Carga --> */}
-                        <image href="/caixascarro.png" x="140" y="50" width="220" height="280" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
+                        <image href="/caixascarro.png" x="140" y="50" width="220" height="290" preserveAspectRatio="xMidYMid slice" clipPath="url(#cargo-clip)" className="transition-opacity duration-1000 group-hover:opacity-100 opacity-0" />
                         
                         {/* <!-- Portas e Logo --> */}
                         <g className="origin-center" style={{ transformOrigin: "center" }}>
@@ -337,6 +332,11 @@ export default function HomePage() {
                             <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]">
                                 <rect x="250" y="40" width="130" height="300" rx="8" fill="#FFFFFF" />
                             </g>
+                        </g>
+
+                        {/* <!-- Maçaneta --> */}
+                        <g className="transition-opacity duration-300 group-hover:opacity-0" pointerEvents="none">
+                            <rect x="140" y="208" width="100" height="8" rx="3" fill="#1F2937" />
                         </g>
 
                         {/* <!-- Linha central da porta --> */}
