@@ -253,7 +253,8 @@ export default function HomePage() {
 
         <main className="pt-16">
           {/* Hero Section */}
-            <section className="relative grid min-h-[calc(100vh-4rem)] w-full items-center justify-center bg-cover bg-center px-6 py-16">
+            <section className="relative w-full min-h-[calc(100vh-4rem)]">
+                {/* Background Image Container */}
                 <div className="absolute inset-0">
                     <Image
                         src="/fundoletra.jpg"
@@ -265,7 +266,9 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-black/60"></div>
                 </div>
 
-                <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
+                {/* Content Grid */}
+                <div className="relative z-10 grid w-full max-w-7xl mx-auto h-full grid-cols-1 md:grid-cols-2 items-center gap-8 px-6 py-16 min-h-[calc(100vh-4rem)]">
+                    {/* Left Column: Text Content */}
                     <div className="text-center md:text-left">
                         <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight text-white">
                         <TypeAnimation
@@ -290,12 +293,13 @@ export default function HomePage() {
                         </div>
                     </div>
                 
-                    <div className="relative w-full h-full min-h-[400px] flex justify-center items-center overflow-hidden rounded-lg group">
+                    {/* Right Column: Van Animation */}
+                    <div className="relative w-full h-full min-h-[400px] flex justify-center items-center group">
                         <Image
                             src="/estrada.png"
                             alt="Estrada de asfalto"
                             fill
-                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                             data-ai-hint="road asphalt"
                             priority
                         />
@@ -328,7 +332,7 @@ export default function HomePage() {
                                             
                                             {/* --- IMAGEM DE FUNDO --- */}
                                             <foreignObject x="125" y="90" width="250" height="250">
-                                                <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                                <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                                                     <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                                 </div>
                                             </foreignObject>
