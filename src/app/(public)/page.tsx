@@ -252,41 +252,45 @@ export default function HomePage() {
         </header>
 
         <main className="pt-16">
-          <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-between gap-8 overflow-hidden bg-transparent px-6 py-16 lg:px-24 md:flex-row flex-col">
-            <div className="z-10 w-full md:w-1/2 text-center md:text-left">
-              <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight">
-                <TypeAnimation
-                  sequence={[
-                    "Logística Inteligente, Vida em Movimento.", 2000,
-                    "Conectamos a saúde com agilidade.", 2000,
-                    "Conectamos a saúde com segurança.", 2000,
-                    "Conectamos a saúde com tecnologia.", 2000,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  repeat={Infinity}
+          <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-transparent px-6 py-16 group">
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/estrada.png"
+                    alt="Estrada de asfalto"
+                    fill
+                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    data-ai-hint="road asphalt"
+                    priority
                 />
-              </h1>
-              <p className="mx-auto mt-4 max-w-md text-lg text-muted-foreground md:mx-0 md:text-xl">
-                Soluções de transporte dedicadas para o que mais importa.
-              </p>
-              <div className="mt-8 flex justify-center md:justify-start">
-                <Button asChild size="lg" className="text-lg">
-                  <Link href="/quote">Solicite um Orçamento Agora</Link>
-                </Button>
-              </div>
+                <div className="absolute inset-0 bg-black/30"></div>
             </div>
-             <div className="relative group w-full md:w-1/2 flex justify-center items-center p-4">
-                <div className="absolute inset-0">
-                    <Image
-                        src="/estrada.png"
-                        alt="Estrada de asfalto"
-                        fill
-                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                        data-ai-hint="road asphalt"
-                        priority
+
+            <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
+              <div className="text-center md:text-left text-white">
+                <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
+                    <TypeAnimation
+                    sequence={[
+                        "Logística Inteligente, Vida em Movimento.", 2000,
+                        "Conectamos a saúde com agilidade.", 2000,
+                        "Conectamos a saúde com segurança.", 2000,
+                        "Conectamos a saúde com tecnologia.", 2000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
                     />
+                </h1>
+                <p className="mx-auto mt-4 max-w-md text-lg text-white/90 md:mx-0 md:text-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
+                    Soluções de transporte dedicadas para o que mais importa.
+                </p>
+                <div className="mt-8 flex justify-center md:justify-start">
+                    <Button asChild size="lg" className="text-lg">
+                    <Link href="/quote">Solicite um Orçamento Agora</Link>
+                    </Button>
                 </div>
+              </div>
+            
+             <div className="relative w-full flex justify-center items-center p-4">
                 <Tilt options={tiltOptions} className="relative z-10">
                     <motion.div
                     className="relative w-full max-w-sm flex justify-center items-center group/van"
@@ -365,6 +369,7 @@ export default function HomePage() {
                     </motion.div>
                 </Tilt>
              </div>
+            </div>
           </section>
 
           {/* Features Section */}
@@ -593,6 +598,7 @@ export default function HomePage() {
     
 
     
+
 
 
 
