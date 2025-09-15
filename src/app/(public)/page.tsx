@@ -328,7 +328,7 @@ export default function HomePage() {
                                     {/* Esta imagem aparece quando as portas se abrem */}
                                     <foreignObject x="125" y="90" width="250" height="250">
                                         <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <img src="/kamgoo.png" alt="Interior da van" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         </div>
                                     </foreignObject>
                         
@@ -336,11 +336,13 @@ export default function HomePage() {
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="1" />
+                                            <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="1" />
+                                            <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
+                                            {/* Logo na porta direita */}
+                                            <image href="/logvida-logo.png" x="275" y="170" height="90" width="90" />
                                         </g>
                                     </g>
                                     
@@ -585,5 +587,6 @@ export default function HomePage() {
     
 
     
+
 
 
