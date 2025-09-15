@@ -252,8 +252,8 @@ export default function HomePage() {
         </header>
 
         <main className="pt-16">
-          <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-transparent px-6 py-16 group">
-            <div className="absolute inset-0 z-0">
+          <section className="relative grid min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-transparent px-6 py-16">
+            <div className="absolute inset-0 z-0 group">
                 <Image
                     src="/estrada.png"
                     alt="Estrada de asfalto"
@@ -606,3 +606,6 @@ export default function HomePage() {
 
 
 
+
+
+    
