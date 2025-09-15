@@ -337,22 +337,22 @@ export default function HomePage() {
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
+                                            {/* Logo na porta esquerda */}
+                                            <image href="/logvida-logo.png" x="145" y="170" height="90" width="90" />
+                                            {/* Metade esquerda da maçaneta */}
+                                            <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
-                                            {/* Logo na porta direita */}
-                                            <image href="/logvida-logo.png" x="275" y="170" height="90" width="90" />
+                                            {/* Metade direita da maçaneta */}
+                                            <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                         </g>
                                     </g>
                                     
                                     {/* --- DETALHES FINAIS --- */}
                                     {/* Linha de separação entre as portas */}
                                     <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
-                                    {/* Maçaneta da porta */}
-                                    <g>
-                                      <rect x="140" y="260" width="202" height="8" rx="3" fill="#1F2937" />
-                                    </g>
                                 </g>
                             </svg>
                         </div>
@@ -587,6 +587,7 @@ export default function HomePage() {
     
 
     
+
 
 
 
