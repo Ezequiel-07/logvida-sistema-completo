@@ -255,30 +255,35 @@ export default function HomePage() {
           {/* Hero Section */}
           <section className="grid min-h-[calc(100vh-4rem)] w-full items-center justify-center bg-transparent px-6 py-16">
             <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
-              
               {/* Coluna do Letreiro */}
-              <div className="text-center md:text-left">
-                <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight text-foreground">
-                  <TypeAnimation
-                    sequence={[
-                      "Logística Inteligente, Vida em Movimento.", 2000,
-                      "Conectamos a saúde com agilidade.", 2000,
-                      "Conectamos a saúde com segurança.", 2000,
-                      "Conectamos a saúde com tecnologia.", 2000,
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                  />
-                </h1>
-                <p className="mx-auto mt-4 max-w-md text-lg text-muted-foreground md:mx-0 md:text-xl">
-                  Soluções de transporte dedicadas para o que mais importa.
-                </p>
-                <div className="mt-8 flex justify-center md:justify-start">
-                  <Button asChild size="lg" className="text-lg">
-                    <Link href="/quote">Solicite um Orçamento Agora</Link>
-                  </Button>
-                </div>
+                <div 
+                    className="relative text-center md:text-left rounded-lg p-8 flex flex-col justify-center min-h-[400px] bg-cover bg-center"
+                    style={{ backgroundImage: "url('/fundoletra.jpg')" }}
+                >
+                    <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
+                    <div className="relative z-10">
+                        <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight text-white">
+                        <TypeAnimation
+                            sequence={[
+                            "Logística Inteligente, Vida em Movimento.", 2000,
+                            "Conectamos a saúde com agilidade.", 2000,
+                            "Conectamos a saúde com segurança.", 2000,
+                            "Conectamos a saúde com tecnologia.", 2000,
+                            ]}
+                            wrapper="span"
+                            speed={50}
+                            repeat={Infinity}
+                        />
+                        </h1>
+                        <p className="mx-auto mt-4 max-w-md text-lg text-white/80 md:mx-0 md:text-xl">
+                        Soluções de transporte dedicadas para o que mais importa.
+                        </p>
+                        <div className="mt-8 flex justify-center md:justify-start">
+                        <Button asChild size="lg" className="text-lg">
+                            <Link href="/quote">Solicite um Orçamento Agora</Link>
+                        </Button>
+                        </div>
+                    </div>
               </div>
               
               {/* Coluna da Animação da Van */}
@@ -599,3 +604,4 @@ export default function HomePage() {
     
 
     
+
