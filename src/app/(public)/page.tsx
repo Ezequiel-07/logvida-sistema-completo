@@ -291,7 +291,6 @@ export default function HomePage() {
                     data-ai-hint="road asphalt"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative w-full max-w-sm p-4 z-10">
                     <Tilt options={tiltOptions}>
                         <motion.div
