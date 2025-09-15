@@ -253,15 +253,20 @@ export default function HomePage() {
 
         <main className="pt-16">
           {/* Hero Section */}
-          <section className="grid min-h-[calc(100vh-4rem)] w-full items-center justify-center bg-transparent px-6 py-16">
-            <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
-              {/* Coluna do Letreiro */}
-                <div 
-                    className="relative text-center md:text-left rounded-lg p-8 flex flex-col justify-center min-h-[400px] bg-cover bg-center"
-                    style={{ backgroundImage: "url('/fundoletra.jpg')" }}
-                >
-                    <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
-                    <div className="relative z-10">
+            <section className="relative grid min-h-[calc(100vh-4rem)] w-full items-center justify-center bg-cover bg-center px-6 py-16">
+                <div className="absolute inset-0">
+                    <Image
+                        src="/fundoletra.jpg"
+                        alt="Fundo de tecnologia abstrato"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/60"></div>
+                </div>
+
+                <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
+                    <div className="text-center md:text-left">
                         <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight text-white">
                         <TypeAnimation
                             sequence={[
@@ -284,86 +289,83 @@ export default function HomePage() {
                         </Button>
                         </div>
                     </div>
-              </div>
-              
-              {/* Coluna da Animação da Van */}
-              <div className="relative w-full h-[400px] flex justify-center items-center overflow-hidden rounded-lg group">
-                <Image
-                    src="/estrada.png"
-                    alt="Estrada de asfalto"
-                    fill
-                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                    data-ai-hint="road asphalt"
-                    priority
-                />
-                <div className="relative w-full max-w-sm p-4 z-10">
-                    <Tilt options={tiltOptions}>
-                        <motion.div
-                            className="relative w-full flex justify-center items-center group/van"
-                            onHoverStart={handleVanHoverStart}
-                            onHoverEnd={handleVanHoverEnd}
-                            variants={vanDriveAwayVariants}
-                            animate={controls}
-                            initial="initial"
-                        >
-                            <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
-                                <g transform="scale(0.8)">
-                                    {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
-                                    <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
-                                    <rect x="86" y="345" width="330" height="30" rx="6" fill="#1f2937" />
-                                    <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
-                                    <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
+                
+                    <div className="relative w-full h-full min-h-[400px] flex justify-center items-center overflow-hidden rounded-lg group">
+                        <Image
+                            src="/estrada.png"
+                            alt="Estrada de asfalto"
+                            fill
+                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                            data-ai-hint="road asphalt"
+                            priority
+                        />
+                        <div className="relative w-full max-w-sm p-4 z-10">
+                            <Tilt options={tiltOptions}>
+                                <motion.div
+                                    className="relative w-full flex justify-center items-center group/van"
+                                    onHoverStart={handleVanHoverStart}
+                                    onHoverEnd={handleVanHoverEnd}
+                                    variants={vanDriveAwayVariants}
+                                    animate={controls}
+                                    initial="initial"
+                                >
+                                    <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
+                                        <g transform="scale(0.8)">
+                                            {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
+                                            <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
+                                            <rect x="86" y="345" width="330" height="30" rx="6" fill="#1f2937" />
+                                            <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
+                                            <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
 
-                                    {/* --- LUZES E DETALHES --- */}
-                                    <g>
-                                        <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 95 C 125 105 110 95 110 110 Z" fill="#DC2626" />
-                                        <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6" />
-                                        <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 95 C 375 105 390 95 390 110 Z" fill="#DC2626" />
-                                        <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6" />
-                                        <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
-                                    </g>
-                                    
-                                    {/* --- IMAGEM DE FUNDO --- */}
-                                    {/* Esta imagem aparece quando as portas se abrem */}
-                                    <foreignObject x="125" y="90" width="250" height="250">
-                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                        </div>
-                                    </foreignObject>
-                        
-                                    {/* --- PORTAS TRASEIRAS --- */}
-                                    <g className="origin-center" style={{ transformOrigin: "center" }}>
-                                        {/* Porta Esquerda (animada para abrir para a esquerda) */}
-                                        <g className="origin-left transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
-                                            {/* Logo na porta esquerda */}
-                                            <image href="/logvida-logo.png" x="145" y="120" height="90" width="90" />
-                                            {/* Metade esquerda da maçaneta */}
-                                            <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
+                                            {/* --- LUZES E DETALHES --- */}
+                                            <g>
+                                                <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 95 C 125 105 110 95 110 110 Z" fill="#DC2626" />
+                                                <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6" />
+                                                <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 95 C 375 105 390 95 390 110 Z" fill="#DC2626" />
+                                                <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6" />
+                                                <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
+                                            </g>
+                                            
+                                            {/* --- IMAGEM DE FUNDO --- */}
+                                            <foreignObject x="125" y="90" width="250" height="250">
+                                                <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                                    <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                </div>
+                                            </foreignObject>
+                                
+                                            {/* --- PORTAS TRASEIRAS --- */}
+                                            <g className="origin-center" style={{ transformOrigin: "center" }}>
+                                                {/* Porta Esquerda (animada para abrir para a esquerda) */}
+                                                <g className="origin-left transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
+                                                    <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
+                                                    {/* Logo na porta esquerda */}
+                                                    <image href="/logvida-logo.png" x="145" y="120" height="90" width="90" />
+                                                    {/* Metade esquerda da maçaneta */}
+                                                    <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
+                                                </g>
+                                                {/* Porta Direita (animada para abrir para a direita) */}
+                                                <g className="origin-right transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
+                                                    <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
+                                                    {/* Metade direita da maçaneta */}
+                                                    <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
+                                                    {/* Imagem do QR Code na porta direita */}
+                                                    <image href="/qrcode.jpg" x="275" y="130" height="70" width="70" />
+                                                    {/* Texto abaixo do QR Code */}
+                                                    <text x="310" y="215" fontFamily="Arial, sans-serif" fontSize="14" fill="#000" textAnchor="middle">logvida.com</text>
+                                                </g>
+                                            </g>
+                                            
+                                            {/* --- DETALHES FINAIS --- */}
+                                            {/* Linha de separação entre as portas */}
+                                            <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
                                         </g>
-                                        {/* Porta Direita (animada para abrir para a direita) */}
-                                        <g className="origin-right transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
-                                            {/* Metade direita da maçaneta */}
-                                            <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
-                                            {/* Imagem do QR Code na porta direita */}
-                                            <image href="/qrcode.jpg" x="275" y="130" height="70" width="70" />
-                                            {/* Texto abaixo do QR Code */}
-                                            <text x="310" y="215" fontFamily="Arial, sans-serif" fontSize="14" fill="#000" textAnchor="middle">logvida.com</text>
-                                        </g>
-                                    </g>
-                                    
-                                    {/* --- DETALHES FINAIS --- */}
-                                    {/* Linha de separação entre as portas */}
-                                    <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
-                                </g>
-                            </svg>
-                        </motion.div>
-                    </Tilt>
+                                    </svg>
+                                </motion.div>
+                            </Tilt>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
           {/* Features Section */}
           <section id="features" className="w-full py-16 md:py-24 lg:py-32">
@@ -376,7 +378,7 @@ export default function HomePage() {
                   Combinamos tecnologia e cuidado para oferecer um serviço de
                   transporte em que você pode confiar.
                 </p>
-              </div>
+              </div>{
               <div className="mt-12 flex flex-col items-center">
                 <div className="relative flex h-auto min-h-[550px] w-full max-w-xl items-center justify-center overflow-hidden">
                   <AnimatePresence mode="wait">
@@ -423,7 +425,7 @@ export default function HomePage() {
                   ))}
                 </div>
               </div>
-            </div>
+            }</div>
           </section>
           
           {/* Weekly Routes Section */}
@@ -585,23 +587,4 @@ export default function HomePage() {
       </div>
     </div>
   );
-
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
+}
