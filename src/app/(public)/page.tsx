@@ -252,8 +252,37 @@ export default function HomePage() {
         </header>
 
         <main className="pt-16">
-          <section className="relative grid min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-transparent px-6 py-16">
-            <div className="absolute inset-0 z-0 group">
+          {/* Hero Section */}
+          <section className="grid min-h-[calc(100vh-4rem)] w-full items-center justify-center bg-transparent px-6 py-16">
+            <div className="grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
+              
+              {/* Coluna do Letreiro */}
+              <div className="text-center md:text-left">
+                <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight text-foreground">
+                  <TypeAnimation
+                    sequence={[
+                      "Logística Inteligente, Vida em Movimento.", 2000,
+                      "Conectamos a saúde com agilidade.", 2000,
+                      "Conectamos a saúde com segurança.", 2000,
+                      "Conectamos a saúde com tecnologia.", 2000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                  />
+                </h1>
+                <p className="mx-auto mt-4 max-w-md text-lg text-muted-foreground md:mx-0 md:text-xl">
+                  Soluções de transporte dedicadas para o que mais importa.
+                </p>
+                <div className="mt-8 flex justify-center md:justify-start">
+                  <Button asChild size="lg" className="text-lg">
+                    <Link href="/quote">Solicite um Orçamento Agora</Link>
+                  </Button>
+                </div>
+              </div>
+              
+              {/* Coluna da Animação da Van */}
+              <div className="relative w-full h-[400px] flex justify-center items-center overflow-hidden rounded-lg group">
                 <Image
                     src="/estrada.png"
                     alt="Estrada de asfalto"
@@ -263,68 +292,30 @@ export default function HomePage() {
                     priority
                 />
                 <div className="absolute inset-0 bg-black/30"></div>
-            </div>
-
-            <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2">
-              <div className="text-center md:text-left text-white">
-                <h1 className="flex min-h-[140px] items-center text-4xl font-bold tracking-tight sm:text-5xl md:min-h-[100px] lg:text-6xl !leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
-                    <TypeAnimation
-                    sequence={[
-                        "Logística Inteligente, Vida em Movimento.", 2000,
-                        "Conectamos a saúde com agilidade.", 2000,
-                        "Conectamos a saúde com segurança.", 2000,
-                        "Conectamos a saúde com tecnologia.", 2000,
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    />
-                </h1>
-                <p className="mx-auto mt-4 max-w-md text-lg text-white/90 md:mx-0 md:text-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
-                    Soluções de transporte dedicadas para o que mais importa.
-                </p>
-                <div className="mt-8 flex justify-center md:justify-start">
-                    <Button asChild size="lg" className="text-lg">
-                    <Link href="/quote">Solicite um Orçamento Agora</Link>
-                    </Button>
-                </div>
-              </div>
-            
-             <div className="relative w-full flex justify-center items-center p-4">
-                <Tilt options={tiltOptions} className="relative z-10">
-                    <motion.div
-                    className="relative w-full max-w-sm flex justify-center items-center group/van"
-                    onHoverStart={handleVanHoverStart}
-                    onHoverEnd={handleVanHoverEnd}
-                    variants={vanDriveAwayVariants}
-                    animate={controls}
-                    initial="initial"
-                    >
-                        <div className="relative z-10">
+                <div className="relative w-full max-w-sm p-4 z-10">
+                    <Tilt options={tiltOptions}>
+                        <motion.div
+                            className="relative w-full flex justify-center items-center group/van"
+                            onHoverStart={handleVanHoverStart}
+                            onHoverEnd={handleVanHoverEnd}
+                            variants={vanDriveAwayVariants}
+                            animate={controls}
+                            initial="initial"
+                        >
                             <svg viewBox="0 0 500 400" className="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg" data-ai-hint="renault kangoo back">
-                                {/* Grupo principal para escalar o desenho da van */}
                                 <g transform="scale(0.8)">
-                                    
                                     {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
-                                    {/* Corpo principal branco da van */}
                                     <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
-                                    {/* Para-choque traseiro */}
                                     <rect x="86" y="345" width="330" height="30" rx="6" fill="#1f2937" />
-                                    {/* Rodas */}
                                     <rect x="99" y="370" width="50" height="30" rx="8" fill="#2d3748" />
                                     <rect x="350" y="370" width="50" height="30" rx="8" fill="#2d3748" />
 
                                     {/* --- LUZES E DETALHES --- */}
                                     <g>
-                                        {/* Luz de freio esquerda */}
                                         <path d="M 110 110 L 110 330 C 110 345 125 355 135 345 L 135 95 C 125 105 110 95 110 110 Z" fill="#DC2626" />
-                                        {/* Detalhe branco na luz de freio esquerda (ré) */}
                                         <path d="M 112 280 L 112 320 C 112 330 122 335 128 328 L 128 288 C 122 275 112 270 112 280 Z" fill="#FFFFFF" opacity="0.6" />
-                                        {/* Luz de freio direita */}
                                         <path d="M 390 110 L 390 330 C 390 345 375 355 365 345 L 365 95 C 375 105 390 95 390 110 Z" fill="#DC2626" />
-                                        {/* Detalhe branco na luz de freio direita (ré) */}
                                         <path d="M 388 280 L 388 320 C 388 330 378 335 372 328 L 372 288 C 378 275 388 270 388 280 Z" fill="#FFFFFF" opacity="0.6" />
-                                        {/* Luz de freio superior (no teto) */}
                                         <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
                                     </g>
                                     
@@ -340,23 +331,21 @@ export default function HomePage() {
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
-                                            {/* Retângulo da Porta Esquerda */}
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
-                                            {/* Metade esquerda da maçaneta */}
-                                            <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                             {/* Logo na porta esquerda */}
                                             <image href="/logvida-logo.png" x="145" y="120" height="90" width="90" />
+                                            {/* Metade esquerda da maçaneta */}
+                                            <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
-                                            {/* Retângulo da Porta Direita */}
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                             {/* Metade direita da maçaneta */}
                                             <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                             {/* Imagem do QR Code na porta direita */}
-                                            <image href="/qrcode.jpg" x="275" y="130" height="80" width="80" />
+                                            <image href="/qrcode.jpg" x="275" y="130" height="70" width="70" />
                                             {/* Texto abaixo do QR Code */}
-                                            <text x="315" y="225" fontFamily="Arial, sans-serif" fontSize="16" fill="#000" textAnchor="middle">logvida.com</text>
+                                            <text x="310" y="215" fontFamily="Arial, sans-serif" fontSize="14" fill="#000" textAnchor="middle">logvida.com</text>
                                         </g>
                                     </g>
                                     
@@ -365,10 +354,10 @@ export default function HomePage() {
                                     <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
                                 </g>
                             </svg>
-                        </div>
-                    </motion.div>
-                </Tilt>
-             </div>
+                        </motion.div>
+                    </Tilt>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -607,5 +596,7 @@ export default function HomePage() {
 
 
 
+
+    
 
     
