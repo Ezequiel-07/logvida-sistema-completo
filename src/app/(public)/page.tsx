@@ -336,6 +336,7 @@ export default function HomePage() {
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
+                                            {/* Retângulo da Porta Esquerda */}
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                             {/* Metade esquerda da maçaneta */}
                                             <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
@@ -344,11 +345,14 @@ export default function HomePage() {
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
+                                            {/* Retângulo da Porta Direita */}
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                             {/* Metade direita da maçaneta */}
                                             <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                             {/* Imagem do QR Code na porta direita */}
-                                            <image href="/qrcode.jpg" x="270" y="120" height="90" width="90" />
+                                            <image href="/qrcode.jpg" x="275" y="130" height="80" width="80" />
+                                            {/* Texto abaixo do QR Code */}
+                                            <text x="315" y="225" fontFamily="Arial, sans-serif" fontSize="16" fill="#000" textAnchor="middle">logvida.com</text>
                                         </g>
                                     </g>
                                     
@@ -589,6 +593,7 @@ export default function HomePage() {
     
 
     
+
 
 
 
