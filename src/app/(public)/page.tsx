@@ -301,14 +301,6 @@ export default function HomePage() {
                                 {/* Grupo principal para escalar o desenho da van */}
                                 <g transform="scale(0.8)">
                                     
-                                    {/* --- IMAGEM DE FUNDO --- */}
-                                    {/* Esta imagem aparece quando as portas se abrem */}
-                                    <foreignObject x="125" y="90" width="250" height="250">
-                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                        </div>
-                                    </foreignObject>
-                                    
                                     {/* --- CHASSI E ESTRUTURA PRINCIPAL --- */}
                                     {/* Corpo principal branco da van */}
                                     <path d="M 110 375 Q 90 375 90 355 L 90 100 Q 90 80 110 75 L 130 70 L 370 70 L 390 75 Q 410 80 410 100 L 410 355 Q 410 375 390 375 Z" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="2" />
@@ -331,16 +323,24 @@ export default function HomePage() {
                                         {/* Luz de freio superior (no teto) */}
                                         <rect x="190" y="72" width="110" height="10" rx="4" fill="#DC2626" />
                                     </g>
-
+                                    
+                                    {/* --- IMAGEM DE FUNDO --- */}
+                                    {/* Esta imagem aparece quando as portas se abrem */}
+                                    <foreignObject x="125" y="90" width="250" height="250">
+                                        <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    </foreignObject>
+                        
                                     {/* --- PORTAS TRASEIRAS --- */}
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
                                         <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
+                                            <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="1" />
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
                                         <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
-                                            <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" />
+                                            <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#A9A9A9" strokeWidth="1" />
                                         </g>
                                     </g>
                                     
@@ -585,4 +585,5 @@ export default function HomePage() {
     
 
     
+
 
