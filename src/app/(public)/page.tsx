@@ -276,20 +276,20 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-             <div className="relative w-full md:w-1/2 flex justify-center items-center p-4">
+             <div className="relative group w-full md:w-1/2 flex justify-center items-center p-4">
                 <div className="absolute inset-0">
                     <Image
                         src="/estrada.png"
                         alt="Estrada de asfalto"
                         fill
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                         data-ai-hint="road asphalt"
                         priority
                     />
                 </div>
                 <Tilt options={tiltOptions} className="relative z-10">
                     <motion.div
-                    className="relative w-full max-w-sm flex justify-center items-center group"
+                    className="relative w-full max-w-sm flex justify-center items-center group/van"
                     onHoverStart={handleVanHoverStart}
                     onHoverEnd={handleVanHoverEnd}
                     variants={vanDriveAwayVariants}
@@ -328,22 +328,22 @@ export default function HomePage() {
                                     {/* Esta imagem aparece quando as portas se abrem */}
                                     <foreignObject x="125" y="90" width="250" height="250">
                                         <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                                            <img src="/kamgoo.png" alt="Interior da van" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <img src="/caixascarro.png" alt="Caixas de transporte" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         </div>
                                     </foreignObject>
                         
                                     {/* --- PORTAS TRASEIRAS --- */}
                                     <g className="origin-center" style={{ transformOrigin: "center" }}>
                                         {/* Porta Esquerda (animada para abrir para a esquerda) */}
-                                        <g className="origin-left transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
+                                        <g className="origin-left transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(-140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="120" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                             {/* Logo na porta esquerda */}
-                                            <image href="/logvida-logo.png" x="145" y="170" height="90" width="90" />
+                                            <image href="/logvida-logo.png" x="145" y="120" height="90" width="90" />
                                             {/* Metade esquerda da maçaneta */}
                                             <rect x="140" y="260" width="108" height="8" rx="3" fill="#1F2937" />
                                         </g>
                                         {/* Porta Direita (animada para abrir para a direita) */}
-                                        <g className="origin-right transition-transform duration-1000 ease-in-out group-hover:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
+                                        <g className="origin-right transition-transform duration-1000 ease-in-out group-hover/van:[transform:rotateY(140deg)]" style={{ transformBox: "fill-box" }}>
                                             <rect x="250" y="85" width="130" height="260" rx="8" fill="#FFFFFF" stroke="#6b7280" strokeWidth="1" />
                                             {/* Metade direita da maçaneta */}
                                             <rect x="252" y="260" width="108" height="8" rx="3" fill="#1F2937" />
@@ -587,6 +587,7 @@ export default function HomePage() {
     
 
     
+
 
 
 
