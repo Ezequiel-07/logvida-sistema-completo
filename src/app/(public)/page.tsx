@@ -355,9 +355,6 @@ export default function HomePage() {
                                                 </g>
                                             </g>
                                             
-                                            {/* --- DETALHES FINAIS --- */}
-                                            {/* Linha de separação entre as portas */}
-                                            <line x1="250" y1="90" x2="250" y2="345" stroke="#e5e7eb" strokeWidth="3" />
                                         </g>
                                     </svg>
                                 </motion.div>

@@ -46,9 +46,8 @@ jobs:
       - name: Deploy to Firebase App Hosting
         uses: firebase/actions/app-hosting-deploy@v0
         with:
-          # O ID do seu projeto Firebase
-          # Nota: Você pode encontrar isso no console do Firebase
-          projectId: logvida-app
+          # O ID do seu projeto Firebase de PRODUÇÃO
+          projectId: logvida-prod
           # A localização do seu backend do App Hosting (us-central1 é comum)
           location: us-central1
         env:
